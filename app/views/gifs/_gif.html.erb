@@ -1,3 +1,7 @@
-<div>
-  <%= gif.name %>
-</div>
+<li class="gif-row">
+  <p> <strong>Name:</strong> <%= gif.name %> </p>
+  <p> <strong>Url:</strong> <%= gif.url %> </p>
+  <div class="gif-previewer">
+    <img src="<%= gif.url %>" alt="">
+  </div>
+</li>

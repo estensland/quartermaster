@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20151121150028) do
 
   create_table "gifs", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "url"
-    t.boolean  "active"
+    t.string   "url"
+    t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

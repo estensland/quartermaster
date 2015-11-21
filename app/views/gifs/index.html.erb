@@ -1,3 +1,7 @@
-<% @gifs.each do |gif| %>
-  <%= render partial: 'gif', locals: { gif: gif }  %>
-<% end %>
+<div class="container">
+  <ul>
+    <% @gifs.each do |gif| %>
+      <%= render partial: 'gif', locals: { gif: gif }  %>
+    <% end %>
+  </ul>
+</div>

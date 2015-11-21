@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+Gif.create(name: 'Why you fail', url: "http://i0.kym-cdn.com/photos/images/original/000/896/093/3b8.gif", active: true)
+Gif.create(name: 'Head hit desk', url: "http://i1145.photobucket.com/albums/o503/KimmieRocks/head-desk-bartlett_zps7aadc009.gif", active: true)
+
