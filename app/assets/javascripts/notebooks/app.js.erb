@@ -1,0 +1,36 @@
+'use strict';
+
+angular
+  .module('notebookApp', [
+    'ngAnimate',
+    'ngResource',
+    'ui.router',
+    'ngMessages',
+    'ui.bootstrap'
+]).config([
+  '$httpProvider',
+  '$locationProvider',
+  '$stateProvider',
+  '$urlRouterProvider',
+  '$compileProvider',
+  function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
+
+    $locationProvider.html5Mode(true).hashPrefix('!');
+    $compileProvider.debugInfoEnabled(<%= Rails.env.development? %>);
+
+    var token = document.querySelector('meta[name="csrf-token"]');
+
+    if(angular.isElement(token)){
+      $httpProvider.defaults.headers.common['X-CSRF-Token'] = token.content;
+    }
+    $httpProvider.useApplyAsync(true);
+    $httpProvider.defaults.headers.common['Authorization']  = '<%#
+    ActionController::HttpAuthentication::Basic.encode_credentials(
+      AUTH_CONFIG[:name],
+      AUTH_CONFIG[:password]
+    ) %>';
+
+    // For any unmatched url, redirect to /state1
+    $urlRouterProvider.
+    otherwise("/");
+ }]);

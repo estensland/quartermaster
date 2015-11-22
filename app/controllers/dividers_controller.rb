@@ -1,19 +1,19 @@
-class NotebooksController < ApplicationController
+class DividersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   def index
-    @notebooks = Notebook.active
+    @dividera = Divider.active
   end
 
   def new
-    @notebook = Notebook.new
+    @divider = Divider.new
   end
 
   def create
-    @notebook = Notebook.new(notebook_params)
-    if @notebook.save
+    @divider = Divider.new(divider_params)
+    if @divider.save
       flash[:success] = 'Notebook created'
       redirect_to :show
     else
@@ -23,13 +23,13 @@ class NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = Notebook.find(params[:id])
+    @divider = Divider.find(params[:id])
   end
 
   def update
-    @notebook = Notebook.find(params[:id])
+    @divider = Divider.find(params[:id])
 
-    if @notebook.update_attributes(notebook_params)
+    if @divider.update_attributes(divider_params)
       flash[:success] = 'Notebook updated'
     else
       flash[:error] = 'Update Failed'
@@ -40,7 +40,7 @@ class NotebooksController < ApplicationController
 
 
 
-  def notebook_params
-    params.require(:notebook).permit(:name, :description, :active, :color_hex)
+  def divider_params
+    params.require(:divider).permit(:name, :description, :active, :notebook_id, :parent_id)
   end
 end

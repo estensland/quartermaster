@@ -1,0 +1,19 @@
+<div class="container">
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @notebooks.each do |notebook| %>
+        <%= render partial: 'notebook', locals: { notebook: notebook }  %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

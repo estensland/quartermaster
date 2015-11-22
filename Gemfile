@@ -37,6 +37,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular', '~> 1.3.15'
+  gem 'rails-assets-angular-bootstrap', '~> 0.13.0'
+end
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,17 @@
+.notebook-view{
+  min-height: 500px;
+  .child-container{
+    padding-right: 0px;
+    padding-left: 5px;
+  }
+  .child-container:not(:first-of-type){
+    .sidebar-divider:first-of-type {
+      border-top: 1px solid black;
+    }
+  }
+  .note-book-navigation{
+    padding-left: 4px;
+    border-right: 1px solid black;
+    min-height: 500px;
+  }
+}

@@ -11,14 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121150028) do
+ActiveRecord::Schema.define(version: 20151121192249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+
+  create_table "dividers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "gifs", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
+    t.boolean  "active",     default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notebooks", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "color_hex"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "divider_id"
+    t.hstore   "hstore"
     t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
