@@ -1,3 +1,4 @@
+console.log('lalalalal')
 'use strict';
 
 angular
@@ -5,7 +6,6 @@ angular
     'ngAnimate',
     'ngResource',
     'ui.router',
-    'ngMessages',
     'ui.bootstrap'
 ]).config([
   '$httpProvider',
@@ -33,4 +33,11 @@ angular
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.
     otherwise("/");
+
+    $stateProvider
+    .state('root', {
+      url: "/",
+      template: "<p>Hi </p>"
+      // controller: 'IndexCtrl as idxCtrl',
+    })
  }]);
