@@ -1,4 +1,3 @@
-console.log('lalalalal')
 'use strict';
 
 angular
@@ -37,7 +36,7 @@ angular
     $stateProvider
     .state('root', {
       url: "/",
-      template: "<p>Hi </p>"
-      // controller: 'IndexCtrl as idxCtrl',
+      templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
+      controller: 'IndexController as indexCtrl'
     })
  }]);

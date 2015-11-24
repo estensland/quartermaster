@@ -5,4 +5,10 @@ Rails.application.routes.draw do
   resources :ping, except: [:destroy]
   resources :note, except: [:destroy]
   resources :notebooks, except: [:destroy]
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :notebooks, except: [:destroy, :new]
+    end
+  end
 end
