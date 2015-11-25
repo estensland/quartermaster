@@ -1,38 +1,38 @@
-class DividersController < ApplicationController
+class Api::V1::DividersController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
   def index
-    @dividers = Divider.active
+    notebook = Notebook.find(params[:notebook_id])
+    @dividers = Divider.active.where(parent: notebook)
+    render json: Divider.active, each_serializer: DividerSerializer
   end
 
   def new
-    @divider = Divider.new
+    render json: Divider.new, serializer: DividerSerializer
   end
 
   def create
     @divider = Divider.new(divider_params)
     if @divider.save
-      flash[:success] = 'Notebook created'
-      redirect_to :show
+      render json: @divider, location: api_v1_dividers_path
     else
-      flash[:success] = 'Creation failed'
-      redirect_to :show
+      render json: {error: 'Creation Failed'}
     end
   end
 
   def show
-    @divider = Divider.find(params[:id])
+    render json: Divider.find(params[:id]), serializer: DividerSerializer
   end
 
   def update
     @divider = Divider.find(params[:id])
 
     if @divider.update_attributes(divider_params)
-      flash[:success] = 'Notebook updated'
+      render json: @divider, location: api_v1_dividers_path
     else
-      flash[:error] = 'Update Failed'
+      render json: {error: 'Creation Failed'}
     end
 
     redirect_to :show
@@ -41,6 +41,6 @@ class DividersController < ApplicationController
 
 
   def divider_params
-    params.require(:divider).permit(:name, :description, :active, :notebook_id, :parent_id)
+    params.require(:divider).permit(:name, :description, :active, :parent_id)
   end
 end

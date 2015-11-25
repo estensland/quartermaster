@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :notebooks, except: [:destroy, :new]
+      resources :dividers, except: [:destroy, :new]
+      resources :notes, except: [:destroy, :new]
     end
   end
 end

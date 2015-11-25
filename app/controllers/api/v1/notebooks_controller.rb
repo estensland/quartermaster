@@ -1,4 +1,4 @@
-class NotebooksController < ApplicationController
+class Api::V1::NotebooksController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -10,11 +10,9 @@ class NotebooksController < ApplicationController
   def create
     @notebook = Notebook.new(notebook_params)
     if @notebook.save
-      flash[:success] = 'Notebook created'
-      redirect_to :show
-    else
-      flash[:success] = 'Creation failed'
       render json: @notebook, location: api_v1_notebooks_path
+    else
+      render json: {error: 'Creation failed'}
     end
   end
 
@@ -27,12 +25,10 @@ class NotebooksController < ApplicationController
     @notebook = Notebook.find(params[:id])
 
     if @notebook.update_attributes(notebook_params)
-      flash[:success] = 'Notebook updated'
+      render json: @notebook, location: api_v1_notebooks_path
     else
-      flash[:error] = 'Update Failed'
+      render json: {error: 'Creation failed'}
     end
-
-    redirect_to :show
   end
 
 
