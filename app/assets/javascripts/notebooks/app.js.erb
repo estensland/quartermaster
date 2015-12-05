@@ -37,6 +37,19 @@ angular
     .state('root', {
       url: "/",
       templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
-      controller: 'IndexController as indexCtrl'
+      controller: 'IndexController as indexCtrl',
+      resolve: {
+        notebook: function($q, NotebookSvc){
+          return $q(function(resolve, reject){
+            NotebookSvc.resource.query().
+            $promise.then(function(data) {
+              resolve(data);
+
+            }, function(error){
+              reject(error);
+            });
+          });
+        }
+      }
     })
  }]);
