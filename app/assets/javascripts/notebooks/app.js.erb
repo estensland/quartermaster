@@ -13,7 +13,6 @@ angular
   '$urlRouterProvider',
   '$compileProvider',
   function($httpProvider, $locationProvider, $stateProvider, $urlRouterProvider, $compileProvider) {
-
     $locationProvider.html5Mode(true).hashPrefix('!');
     $compileProvider.debugInfoEnabled(<%= Rails.env.development? %>);
 
@@ -36,12 +35,30 @@ angular
     $stateProvider
     .state('root', {
       url: "/",
-      templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
+      templateUrl: "<%= asset_path('notebooks/templates/index.html') %>",
       controller: 'IndexController as indexCtrl',
       resolve: {
         notebook: function($q, NotebookSvc){
           return $q(function(resolve, reject){
             NotebookSvc.resource.query().
+            $promise.then(function(data) {
+              resolve(data);
+
+            }, function(error){
+              reject(error);
+            });
+          });
+        }
+      }
+    })
+    .state('notebook', {
+      url: "/:id",
+      templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
+      controller: 'ShowController as showCtrl',
+      resolve: {
+        notebook: function($q, NotebookSvc, $stateParams){
+          return $q(function(resolve, reject){
+            NotebookSvc.resource.query({id: $stateParams.id}).
             $promise.then(function(data) {
               resolve(data);
 

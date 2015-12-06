@@ -1,8 +1,9 @@
 'use strict';
+
 angular.module('notebookApp')
-  .controller('IndexController', [
-      function() {
-        console.log('argh')
+  .controller('ShowController', [
+      'notebook',
+      function(notebook) {
         var indexCtrl = this;
         indexCtrl.test = "Jakobius"
       }
