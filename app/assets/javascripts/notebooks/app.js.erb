@@ -1,3 +1,4 @@
+
 'use strict';
 
 angular
@@ -38,13 +39,16 @@ angular
       templateUrl: "<%= asset_path('notebooks/templates/index.html') %>",
       controller: 'IndexController as indexCtrl',
       resolve: {
-        notebook: function($q, NotebookSvc){
+        notebooks: function($q, NotebookSvc){
           return $q(function(resolve, reject){
+          console.log('qqqqq')
             NotebookSvc.resource.query().
             $promise.then(function(data) {
+              console.log(data)
               resolve(data);
 
             }, function(error){
+              console.log(error)
               reject(error);
             });
           });

@@ -1,14 +1,41 @@
 'use strict';
-
 angular.module('notebookApp')
   .factory('NotebookSvc', [
     '$resource',
     function ($resource) {
-      var Notebook, Build;
-      Note  = $resource('/api/v1/notebooks/:id/', {
+      var Notebook, Build, TransformInstance;
+
+      TransformInstance = function(schematic){
+        return Build(schematic);
+      };
+
+      Notebook  = $resource('/api/v1/notebooks/:id', {
         id: '@id'
       },
-        {
+      {
+        query: {
+          method: 'GET',
+          isArray: false, // <- not returning an array
+          transformResponse: function(data, header) {
+            console.log('cheese')
+            var w = angular.fromJson(data);
+            angular.forEach(w.notebooks, function(notebook, idx) {
+              // Replace each item with an instance of the resource object
+              w.notebooks[idx] = TransformInstance(notebook);
+            });
+            return w;
+          }
+        },
+        get: {
+          method: 'GET',
+          isArray: false, // <- not returning an array
+          transformResponse: function(data, header) {
+            var w = angular.fromJson(data);
+            w.notebook = TransformInstance(w.notebook);
+            w.notebook.geographies = w.geographies;
+            return w.notebook;
+          }
+        },
         update: {
           method: 'PUT'
         },
