@@ -17,7 +17,6 @@ angular.module('notebookApp')
           method: 'GET',
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
-            console.log('cheese')
             var w = angular.fromJson(data);
             angular.forEach(w.notebooks, function(notebook, idx) {
               // Replace each item with an instance of the resource object

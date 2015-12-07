@@ -1,0 +1,26 @@
+
+'use strict';
+
+angular.module('notebookApp')
+  .directive('statusAction', [
+    function(){
+    return{
+      require :'?ngModel',
+      restrict: 'E',
+      scope: {
+        notebookStatus: '='
+      },
+      templateUrl: "<%= asset_path('notebooks/templates/directives/statusAction.html') %>",
+      link: function(scope){
+        if (scope.notebookStatus) {
+          scope.buttonName = 'Deactivate';
+          scope.buttonClass = "btn-danger";
+        }
+        else{
+          scope.buttonName = 'Activate';
+          scope.buttonClass = "btn-success"
+        }
+      }
+    };
+  }
+]);

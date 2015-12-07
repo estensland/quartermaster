@@ -41,14 +41,11 @@ angular
       resolve: {
         notebooks: function($q, NotebookSvc){
           return $q(function(resolve, reject){
-          console.log('qqqqq')
             NotebookSvc.resource.query().
             $promise.then(function(data) {
-              console.log(data)
-              resolve(data);
+              resolve(data.notebooks);
 
             }, function(error){
-              console.log(error)
               reject(error);
             });
           });

@@ -5,8 +5,8 @@ angular.module('notebookApp')
       'notebooks',
       'NotebookSvc',
       function(notebooks, NotebookSvc) {
-        console.log(notebooks)
         var indexCtrl = this;
         indexCtrl.test = "Jakobius"
+        indexCtrl.notebooks = notebooks
       }
   ]);
