@@ -4,7 +4,8 @@ angular.module('notebookApp')
   .controller('ShowController', [
       'notebook',
       function(notebook) {
-        var indexCtrl = this;
-        indexCtrl.test = "Jakobius"
+        console.log(notebook)
+        var showCtrl = this;
+        showCtrl.test = "Jakobius"
       }
   ]);
