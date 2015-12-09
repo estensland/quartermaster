@@ -17,7 +17,7 @@ class Api::V1::NotebooksController < ApplicationController
   end
 
   def show
-    @notebook = Notebook.find(params[:id])
+    @notebook = Notebook.preload(children: {children: {children: :children}}).find(params[:id])
     render json: @notebook, serializer: NotebookSerializer
   end
 

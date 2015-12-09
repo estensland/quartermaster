@@ -5,4 +5,5 @@ class NotebookSerializer < ActiveModel::Serializer
               :created_at,
               :updated_at,
               :active
+  has_many :children, serializer: DividerSerializer
 end

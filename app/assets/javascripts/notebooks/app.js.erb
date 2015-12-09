@@ -61,7 +61,7 @@ angular
           return $q(function(resolve, reject){
             NotebookSvc.resource.query({id: $stateParams.id}).
             $promise.then(function(data) {
-              resolve(data);
+              resolve(data.notebook);
 
             }, function(error){
               reject(error);

@@ -4,8 +4,21 @@ angular.module('notebookApp')
   .controller('ShowController', [
       'notebook',
       function(notebook) {
-        console.log(notebook)
         var showCtrl = this;
-        showCtrl.test = "Jakobius"
+        showCtrl.notebook = notebook;
+
+        var openDividerSet = function(openingDivider){
+          if(openingDivider.children && openingDivider.children.length > 0){
+            console.log(openingDivider.children)
+            openingDivider = openDividerSet(openingDivider.children[0]);
+          }
+          else{
+            return openingDivider;
+          }
+        }
+console.log(notebook.children)
+
+        showCtrl.currentDivider = openDividerSet(notebook);
+
       }
   ]);

@@ -6,4 +6,5 @@ class DividerSerializer < ActiveModel::Serializer
               :parent_id,
               :parent_type,
               :active
+  has_many :children, serializer: DividerSerializer
 end

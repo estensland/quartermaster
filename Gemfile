@@ -37,13 +37,13 @@ gem 'pry'
 
 gem 'active_model_serializers'
 
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-angular', '~> 1.3.15'
-  gem 'rails-assets-angular-bootstrap', '~> 0.13.0'
-  gem "rails-assets-angular-resource", '~> 1.3.15'
-  gem "rails-assets-angular-animate", '~> 1.3.15'
+  gem 'rails-assets-angular', '~> 1.4.8'
+  gem 'rails-assets-angular-bootstrap', '~> 0.14.3'
+  gem "rails-assets-angular-resource", '~> 1.4.8'
+  gem "rails-assets-angular-animate", '~> 1.4.8'
   gem 'rails-assets-angular-ui-router', '0.2.15'
 end
 
