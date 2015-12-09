@@ -1,0 +1,16 @@
+'use strict';
+
+angular.module('notebookApp').directive('directoryEntry', [
+  function(){
+    return{
+      restrict: 'E',
+      scope: {
+        object: '=',
+      },
+      templateUrl: "<%= asset_path('notebooks/templates/directives/directoryEntry.html') %>",
+      link(scope, element, attrs){
+        console.log(scope.object)
+      }
+    };
+  }
+]);

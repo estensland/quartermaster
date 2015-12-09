@@ -59,6 +59,7 @@ angular.module('notebookApp')
         return new Notebook({
           id:           obj.id            || null,
           name:         obj.name          || '',
+          children:     obj.children      || [],
           description:  obj.description   || '',
           color_hex:    obj.color_hex     || '#000000',
           active:       obj.active        || true,

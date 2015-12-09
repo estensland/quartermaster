@@ -1,9 +1,7 @@
-
 'use strict';
 
-angular.module('notebookApp')
-  .directive('statusAction', [
-    function(){
+angular.module('notebookApp').directive('statusAction', [
+  function(){
     return{
       require :'?ngModel',
       restrict: 'E',

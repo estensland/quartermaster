@@ -2,23 +2,27 @@
 
 angular.module('notebookApp')
   .controller('ShowController', [
-      'notebook',
-      function(notebook) {
+      'notebooks',
+      'notebookId',
+      function(notebooks, notebookId) {
         var showCtrl = this;
-        showCtrl.notebook = notebook;
+        showCtrl.notebooks = notebooks;
+        var matches = showCtrl.notebooks.filter(function(notebook){return parseInt(notebook.id) === parseInt(notebookId)});
+        showCtrl.notebook;
+
+        if(matches.length > 0){
+          showCtrl.notebook = matches[0];
+        }
 
         var openDividerSet = function(openingDivider){
           if(openingDivider.children && openingDivider.children.length > 0){
-            console.log(openingDivider.children)
             openingDivider = openDividerSet(openingDivider.children[0]);
           }
           else{
             return openingDivider;
           }
         }
-console.log(notebook.children)
 
-        showCtrl.currentDivider = openDividerSet(notebook);
-
+        showCtrl.currentDivider = openDividerSet(showCtrl.notebook);
       }
   ]);
