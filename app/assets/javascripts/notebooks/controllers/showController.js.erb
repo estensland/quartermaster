@@ -18,11 +18,14 @@ angular.module('notebookApp')
           if(openingDivider.children && openingDivider.children.length > 0){
             openingDivider = openDividerSet(openingDivider.children[0]);
           }
-          else{
-            return openingDivider;
-          }
+          return openingDivider;
         }
 
         showCtrl.currentDivider = openDividerSet(showCtrl.notebook);
+
+        showCtrl.setCurrentDivider = function(divider){
+          showCtrl.currentDivider = divider;
+          divider.notes = divider.notes.sort(function(a,b){return parseInt(a.order) > parseInt(b.order)})
+        }
       }
   ]);

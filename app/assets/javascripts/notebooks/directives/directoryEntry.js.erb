@@ -1,15 +1,22 @@
 'use strict';
 
 angular.module('notebookApp').directive('directoryEntry', [
-  function(){
+  'RecursionHelper',
+  function(RecursionHelper){
     return{
       restrict: 'E',
       scope: {
         object: '=',
+        clicker: '='
       },
       templateUrl: "<%= asset_path('notebooks/templates/directives/directoryEntry.html') %>",
-      link(scope, element, attrs){
-        console.log(scope.object)
+      compile: function(element) {
+        return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn){
+          // Define your normal link function here.
+          // Alternative: instead of passing a function,
+          // you can also pass an object with
+          // a 'pre'- and 'post'-link function.
+        })
       }
     };
   }

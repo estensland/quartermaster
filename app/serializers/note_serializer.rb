@@ -1,5 +1,7 @@
 class NoteSerializer < ActiveModel::Serializer
-  attributes  :divider_id,
+  attributes  :id,
+              :divider_id,
+              :body,
               :hstore,
               :order,
               :active

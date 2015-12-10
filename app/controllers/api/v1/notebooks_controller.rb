@@ -4,7 +4,7 @@ class Api::V1::NotebooksController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    @notebooks = Notebook.active.preload(children: {children: {children: :children}})
+    @notebooks = Notebook.active.preload(children: [:notes, {children: [{children: [:children, :notes]}, :notes ] }])
     render json: @notebooks, each_serializer: NotebookSerializer
   end
 

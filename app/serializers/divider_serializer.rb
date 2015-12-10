@@ -7,4 +7,5 @@ class DividerSerializer < ActiveModel::Serializer
               :parent_type,
               :active
   has_many :children, serializer: DividerSerializer
+  has_many :notes, serializer: NoteSerializer
 end

@@ -1,29 +1,8 @@
-<div>
-  {{object.name}}
-  <ul ng-if="object.children.length > 0">
+<li>
+  <div class="marker" ng-click="clicker(object)">{{object.name}}</div>
+  <ul class="directory-list" ng-if="object.children.length > 0">
     <li ng-repeat="child in object.children">
-      <!-- <directory-entry object="child"> </directory-entry> -->
-      <p>{{child.name}}</p>
-      <ul ng-if="child.children.length > 0">
-        <li ng-repeat="child in child.children">
-          {{child.name}}
-          <ul ng-if="child.children.length > 0">
-            <li ng-repeat="child in child.children">
-              {{child.name}}
-              <ul ng-if="child.children.length > 0">
-                <li ng-repeat="child in child.children">
-                  {{child.name}}
-                  <ul ng-if="child.children.length > 0">
-                    <li ng-repeat="child in child.children">
-                      {{child.name}}
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <directory-entry object="child" clicker="clicker"> </directory-entry>
     </li>
   </ul>
-</div>
+</li>
