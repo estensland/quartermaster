@@ -10,11 +10,15 @@ angular.module('notebookApp').directive('noteArea', [
         notes: '='
       },
       link: function(scope, element, attrs){
-        console.log(element)
-        scope.notes.forEach(function(note){
-          console.log(note)
-          RenderNotebookSvc.slapOnPage(element, note);
-        })
+        scope.renderNotes = function(){
+          scope.notes.forEach(function(note){
+            RenderNotebookSvc.slapOnPage(element, note);
+          })
+        }
+
+        scope.$watch('notes', function (notes) {
+          scope.renderNotes()
+        });
       }
     }
   }
