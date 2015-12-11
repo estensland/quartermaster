@@ -57,19 +57,16 @@ angular
       templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
       controller: 'ShowController as showCtrl',
       resolve: {
-        notebooks: function($q, NotebookSvc){
+        notebook: function($q, NotebookSvc, $stateParams){
           return $q(function(resolve, reject){
-            NotebookSvc.resource.query().
+            NotebookSvc.resource.query({id: $stateParams.id}).
             $promise.then(function(data) {
-              resolve(data.notebooks);
+              resolve(data.notebook);
 
             }, function(error){
               reject(error);
             });
           });
-        },
-        notebookId: function($stateParams){
-          return $stateParams.id
         }
       }
     })

@@ -2,17 +2,10 @@
 
 angular.module('notebookApp')
   .controller('ShowController', [
-      'notebooks',
-      'notebookId',
-      function(notebooks, notebookId) {
+      'notebook',
+      function(notebook) {
         var showCtrl = this;
-        showCtrl.notebooks = notebooks;
-        var matches = showCtrl.notebooks.filter(function(notebook){return parseInt(notebook.id) === parseInt(notebookId)});
-        showCtrl.notebook;
-
-        if(matches.length > 0){
-          showCtrl.notebook = matches[0];
-        }
+        showCtrl.notebook = notebook;
 
         var openDividerSet = function(openingDivider){
           if(openingDivider.children && openingDivider.children.length > 0){

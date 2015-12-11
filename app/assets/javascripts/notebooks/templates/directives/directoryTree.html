@@ -1,8 +1,8 @@
 <div>
   <h4 class="directrory-tree-header">Notebooks</h4>
   <ul class="directory-list">
-    <li ng-repeat="notebook in showCtrl.notebooks">
-      <directory-entry object="notebook" clicker="showCtrl.setCurrentDivider"> </directory-entry>
+    <li ng-repeat="child in showCtrl.notebook.children">
+      <directory-entry object="child" clicker="showCtrl.setCurrentDivider"> </directory-entry>
      </li>
   </ul>
 </div>

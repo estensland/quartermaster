@@ -1,0 +1,21 @@
+'use strict';
+
+angular.module('notebookApp').directive('noteArea', [
+  'RenderNotebookSvc',
+  function(RenderNotebookSvc){
+    return{
+      restrict: 'E',
+      templateUrl: "<%= asset_path('notebooks/templates/directives/noteArea.html') %>",
+      scope:{
+        notes: '='
+      },
+      link: function(scope, element, attrs){
+        console.log(element)
+        scope.notes.forEach(function(note){
+          console.log(note)
+          RenderNotebookSvc.slapOnPage(element, note);
+        })
+      }
+    }
+  }
+]);
