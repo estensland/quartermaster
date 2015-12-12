@@ -1,4 +1,4 @@
-class Api::V1::NoteController < ApplicationController
+class Api::V1::NotesController < ApplicationController
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -7,41 +7,46 @@ class Api::V1::NoteController < ApplicationController
     @notes = Note.active
   end
 
-  def new
-    @note = Note.new
-  end
-
   def create
     @note = Note.new(note_params)
     if @note.save
-      flash[:success] = 'Note created'
-      redirect_to :show
+      render json: @note, location: api_v1_note_path
     else
-      flash[:success] = 'Creation failed'
-      redirect_to :show
+      render json: {error: 'Creation failed'}
     end
   end
 
   def show
     @note = Note.find(params[:id])
+    render json: @note, serializer: NoteSerializer
   end
 
   def update
     @note = Note.find(params[:id])
 
     if @note.update_attributes(note_params)
-      flash[:success] = 'Note updated'
+      render json: @note, serializer: NoteSerializer
     else
-      flash[:error] = 'Update Failed'
+      render json: {error: 'Creation failed'}
     end
 
     redirect_to :show
+  end
+
+  def destroy
+    @note = Note.find(params[:id])
+    if @note.destroy
+      render json: {ok: 'ok'}
+    else
+      render json: {error: 'Deletion failed'}
+    end
+
   end
 
 
   private
 
   def note_params
-    params.require(:note).permit(:name, :description, :active, :color_hex)
+    params.require(:note).permit(:name, :order, :body, :active, :divider_id, :color_hex)
   end
 end

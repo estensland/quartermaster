@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :notebooks, except: [:destroy, :new]
       resources :dividers, except: [:destroy, :new]
-      resources :notes, except: [:destroy, :new]
+      resources :notes, except: [:new]
     end
   end
 end

@@ -21,6 +21,7 @@ angular.module('notebookApp').directive('notePost', [
 
         scope.removeNote = function(){
           element.remove()
+          scope.note.$delete()
         }
 
         scope.toggleTopBar = function(){
