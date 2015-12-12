@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('notebookApp').directive('noteArea', [
-  'RenderNotebookSvc',
-  function(RenderNotebookSvc){
+  function(){
     return{
       restrict: 'E',
       templateUrl: "<%= asset_path('notebooks/templates/directives/noteArea.html') %>",

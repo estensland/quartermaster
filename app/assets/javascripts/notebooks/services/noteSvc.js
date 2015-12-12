@@ -1,16 +1,15 @@
 'use strict';
 angular.module('notebookApp')
-  .factory('NotebookSvc', [
+  .factory('NoteSvc', [
     '$resource',
-    'DividerSvc',
-    function ($resource, DividerSvc) {
-      var Notebook, Build, TransformInstance;
+    function ($resource) {
+      var Note, Build, TransformInstance;
 
-      TransformInstance = function(divider){
-        return Build(divider);
+      TransformInstance = function(note){
+        return Build(note);
       };
 
-      Notebook  = $resource('/api/v1/notebooks/:id', {
+      Note  = $resource('/api/v1/notes/:id', {
         id: '@id'
       },
       {
@@ -19,9 +18,9 @@ angular.module('notebookApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            angular.forEach(w.notebooks, function(notebook, idx) {
+            angular.forEach(w.notebooks, function(note, idx) {
               // Replace each item with an instance of the resource object
-              w.notebooks[idx] = TransformInstance(notebook);
+              w.notes[idx] = TransformInstance(note);
             });
             return w;
           }
@@ -31,45 +30,42 @@ angular.module('notebookApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            w.notebook = TransformInstance(w.notebook);
-            w.notebook.geographies = w.geographies;
-            return w.notebook;
+            w.note = TransformInstance(w.note);
+            w.note.geographies = w.geographies;
+            return w.note;
           }
         },
         update: {
+          method: 'PUT'
+        },
+        destroy:{
           method: 'PUT'
         },
         save: {
           method: 'POST',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {
-            var p = angular.toJson({notebook: data});
+            var p = angular.toJson({note: data});
             return p;
           },
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
 
-            return w.notebook;
+            return w.note;
           }
         }
       });
 
       Build = function(obj) {
+
         obj = obj || {};
-
-        obj.children = obj.children || []
-
-        var childs = []
-        angular.forEach(obj.children, function(child){
-          childs.push(DividerSvc.build(child))
-        })
-
-        return new Notebook({
+        return new Note({
           id:           obj.id            || null,
           name:         obj.name          || '',
-          children:     childs,
-          description:  obj.description   || '',
-          color_hex:    obj.color_hex     || '#000000',
+          body:         obj.body          || '',
+          order:        obj.order         || 0,
+          divider_id:   obj.divider_id    || '',
+          hstore:       obj.hstore        || {x: 0, y: 0},
           active:       obj.active        || true,
           created_at:   obj.created_at    || new Date(),
           updated_at:   obj.updated_at    || new Date()
@@ -77,7 +73,7 @@ angular.module('notebookApp')
       };
 
       return {
-        resource: Notebook,
+        resource: Note,
         build: Build,
       };
   }]);
