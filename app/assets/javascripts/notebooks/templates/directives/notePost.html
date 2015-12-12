@@ -1,0 +1,9 @@
+<div class="notePostContainer" ng-mouseenter="showTopBar = true" ng-mouseleave="showTopBar = false">
+  <div class="full-span top-bar">
+    <div class="note-remover full-span text-right" ng-show="showTopBar" ng-click="removeNote()">
+      X
+    </div>
+  </div>
+  <div class="body-container full-span">{{note.body}}</div>
+
+</div>

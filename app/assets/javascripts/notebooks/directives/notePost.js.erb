@@ -1,0 +1,33 @@
+'use strict';
+
+angular.module('notebookApp').directive('notePost', [
+  'RenderNotebookSvc',
+  function(RenderNotebookSvc){
+    return{
+      restrict: 'E',
+      templateUrl: "<%= asset_path('notebooks/templates/directives/notePost.html') %>",
+      scope:{
+        note: '='
+      },
+      link: function(scope, element, attrs){
+        var box = element[0].getBoundingClientRect()
+        element.css('width', ('' + scope.note.hstore.width + 'px'))
+        element.css('position', 'absolute')
+        element.offset(
+          {
+            left: parseInt(scope.note.hstore.x) + parseInt(box.left),
+            top: parseInt(scope.note.hstore.y) + parseInt(box.top)
+          }
+        )
+
+        scope.removeNote = function(){
+          element.remove()
+        }
+
+        scope.toggleTopBar = function(){
+          scope.showTopBar = !scope.showTopBar
+        }
+      }
+    }
+  }
+]);

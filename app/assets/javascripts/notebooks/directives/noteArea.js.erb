@@ -8,17 +8,6 @@ angular.module('notebookApp').directive('noteArea', [
       templateUrl: "<%= asset_path('notebooks/templates/directives/noteArea.html') %>",
       scope:{
         notes: '='
-      },
-      link: function(scope, element, attrs){
-        scope.renderNotes = function(){
-          scope.notes.forEach(function(note){
-            RenderNotebookSvc.slapOnPage(element, note);
-          })
-        }
-
-        scope.$watch('notes', function (notes) {
-          scope.renderNotes()
-        });
       }
     }
   }

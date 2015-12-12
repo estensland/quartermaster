@@ -45,3 +45,28 @@
 
   }
 }
+
+
+
+
+//////////////////
+// Note Post
+///////////////
+.notePostContainer{
+  border: 1px solid black;
+  .top-bar{
+    height: 1.25em;
+    border-bottom: 1px solid black;
+
+    .note-remover{
+      padding-right: .1em;
+    }
+  }
+  .full-span{
+    width: 100%
+  }
+  .body-container{
+    padding: 0 0.5em;
+  }
+}
+
