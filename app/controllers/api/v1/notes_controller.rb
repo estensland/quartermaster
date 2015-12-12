@@ -10,7 +10,7 @@ class Api::V1::NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      render json: @note, location: api_v1_note_path
+      render json: @note, serializer: NoteSerializer
     else
       render json: {error: 'Creation failed'}
     end
@@ -47,6 +47,6 @@ class Api::V1::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:name, :order, :body, :active, :divider_id, :color_hex)
+    params.require(:note).permit(:order, :body, :active, :divider_id, hstore: [:x, :y, :width])
   end
 end

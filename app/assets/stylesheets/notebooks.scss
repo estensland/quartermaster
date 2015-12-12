@@ -16,6 +16,10 @@
   }
 }
 
+.note-area-region{
+  min-height: 500px;
+}
+
 //////////////////
 // Directory Tree
 ///////////////
@@ -52,7 +56,9 @@
 //////////////////
 // Note Post
 ///////////////
+
 .notePostContainer{
+  border-radius: 4px;
   // overflow: hidden;
   border: 1px solid black;
   .top-bar{
@@ -67,6 +73,7 @@
     width: 100%
   }
   .body-container{
+    min-height: 40px;
     padding: 0 0.5em;
   }
 }

@@ -1,7 +1,7 @@
-<div class="notePostContainer" ng-mouseenter="showTopBar = true" ng-mouseleave="showTopBar = false">
+<div class="notePostContainer" ng-mouseenter="showTopBar = true" ng-mouseleave="showTopBar = false" ng-click="$event.stopImmediatePropagation()">
   <div class="full-span top-bar">
-    <div class="note-remover full-span text-right" ng-show="showTopBar" ng-click="removeNote()">
-      X
+    <div class="note-remover text-right" ng-show="showTopBar">
+      <span ng-click="removeNote($event)">X</span>
     </div>
   </div>
   <div class="body-container full-span">{{note.body}}</div>

@@ -19,7 +19,8 @@ angular.module('notebookApp').directive('notePost', [
           }
         )
 
-        scope.removeNote = function(){
+        scope.removeNote = function($event){
+          $event.stopImmediatePropagation()
           element.remove()
           scope.note.$delete()
         }

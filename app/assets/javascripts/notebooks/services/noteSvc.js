@@ -59,13 +59,19 @@ angular.module('notebookApp')
       Build = function(obj) {
 
         obj = obj || {};
+
+        var hstore    = obj.hstore    || {}
+        hstore.x      = hstore.x      || 1
+        hstore.y      = hstore.y      || 1
+        hstore.width  = hstore.width  || 100
+
         return new Note({
           id:           obj.id            || null,
           name:         obj.name          || '',
           body:         obj.body          || '',
           order:        obj.order         || 0,
           divider_id:   obj.divider_id    || '',
-          hstore:       obj.hstore        || {x: 0, y: 0},
+          hstore:       hstore,
           active:       obj.active        || true,
           created_at:   obj.created_at    || new Date(),
           updated_at:   obj.updated_at    || new Date()

@@ -1,12 +1,24 @@
 'use strict';
 
 angular.module('notebookApp').directive('noteArea', [
-  function(){
+  'NoteSvc',
+  function(NoteSvc){
     return{
       restrict: 'E',
       templateUrl: "<%= asset_path('notebooks/templates/directives/noteArea.html') %>",
       scope:{
-        notes: '='
+        notes: '=',
+        dividerId: '='
+      },
+      link: function(scope, element, attrs){
+        element.click(function(e){
+          var box = this.getBoundingClientRect()
+          var hstore = {x: e.clientX - box.left, y: e.clientY - box.top}
+          var newNote = NoteSvc.build({body: 'Test', hstore: hstore, divider_id: scope.dividerId})
+          newNote.$save()
+          scope.notes.push(newNote)
+          scope.$apply()
+        })
       }
     }
   }
