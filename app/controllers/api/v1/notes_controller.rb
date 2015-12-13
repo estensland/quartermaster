@@ -29,8 +29,6 @@ class Api::V1::NotesController < ApplicationController
     else
       render json: {error: 'Creation failed'}
     end
-
-    redirect_to :show
   end
 
   def destroy

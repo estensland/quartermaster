@@ -2,6 +2,7 @@
 angular.module('notebookApp')
   .factory('NoteSvc', [
     '$resource',
+    '$resource',
     function ($resource) {
       var Note, Build, TransformInstance;
 
@@ -41,8 +42,21 @@ angular.module('notebookApp')
         destroy:{
           method: 'PUT'
         },
-        save: {
+        create: {
           method: 'POST',
+          isArray: false, // <- not returning an array
+          transformRequest: function(data, header) {
+            var p = angular.toJson({note: data});
+            return p;
+          },
+          transformResponse: function(data, header) {
+            var w = angular.fromJson(data);
+
+            return w.note;
+          }
+        },
+        save: {
+          method: 'PUT',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {
             var p = angular.toJson({note: data});

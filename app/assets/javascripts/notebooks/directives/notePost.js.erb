@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('notebookApp').directive('notePost', [
-  function(){
+  '$sce',
+  function($sce){
     return{
       restrict: 'E',
       templateUrl: "<%= asset_path('notebooks/templates/directives/notePost.html') %>",
@@ -9,6 +10,9 @@ angular.module('notebookApp').directive('notePost', [
         note: '='
       },
       link: function(scope, element, attrs){
+
+        scope.bod = $sce.trustAsHtml(scope.note.body);
+
         var box = element[0].getBoundingClientRect()
         element.css('width', ('' + scope.note.hstore.width + 'px'))
         element.css('position', 'absolute')
@@ -18,6 +22,14 @@ angular.module('notebookApp').directive('notePost', [
             top: parseInt(scope.note.hstore.y) + parseInt(box.top)
           }
         )
+
+        var bodyContainer = element.find('.body-container')
+        bodyContainer.on('input', function(){
+          if (scope.note.id){
+            scope.note.body = bodyContainer.html()
+            scope.note.$save()
+          }
+        })
 
         scope.removeNote = function($event){
           $event.stopImmediatePropagation()
