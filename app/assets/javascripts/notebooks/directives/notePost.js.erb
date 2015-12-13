@@ -10,7 +10,6 @@ angular.module('notebookApp').directive('notePost', [
         note: '='
       },
       link: function(scope, element, attrs){
-
         scope.bod = $sce.trustAsHtml(scope.note.body);
 
         var box = element[0].getBoundingClientRect()
@@ -23,7 +22,13 @@ angular.module('notebookApp').directive('notePost', [
           }
         )
 
+
         var bodyContainer = element.find('.body-container')
+
+        if(scope.note.body == ''){
+          bodyContainer.focus();
+        }
+
         bodyContainer.on('input', function(){
           if (scope.note.id){
             scope.note.body = bodyContainer.html()
@@ -31,14 +36,20 @@ angular.module('notebookApp').directive('notePost', [
           }
         })
 
+        bodyContainer.on('blur', function(){
+          if(scope.note.body == ''){
+            scope.removeNote();
+          }
+        })
+
         scope.removeNote = function($event){
-          $event.stopImmediatePropagation()
+          if($event){$event.stopImmediatePropagation()}
           element.remove()
           scope.note.$delete()
         }
 
         scope.toggleTopBar = function(){
-          scope.showTopBar = !scope.showTopBar
+          scope.showTopBar = !scope.showTopBar;
         }
       }
     }

@@ -14,7 +14,7 @@ angular.module('notebookApp').directive('noteArea', [
         element.click(function(e){
           var box = this.getBoundingClientRect()
           var hstore = {x: e.clientX - box.left, y: e.clientY - box.top}
-          var newNote = NoteSvc.build({body: 'Test', hstore: hstore, divider_id: scope.dividerId})
+          var newNote = NoteSvc.build({body: '', hstore: hstore, divider_id: scope.dividerId})
           newNote.$create()
           scope.notes.push(newNote)
 
