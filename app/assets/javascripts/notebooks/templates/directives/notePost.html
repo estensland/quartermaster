@@ -4,6 +4,6 @@
       <span ng-click="removeNote($event)">X</span>
     </div>
   </div>
-  <div contentEditable="true" class="body-container full-span" ng-bind-html="bod"></div>
+  <div contentEditable="true" class="body-container full-span" ng-focus="setFocus()" ng-bind-html="bod"></div>
 
 </div>

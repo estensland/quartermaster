@@ -7,7 +7,9 @@ angular.module('notebookApp').directive('notePost', [
       restrict: 'E',
       templateUrl: "<%= asset_path('notebooks/templates/directives/notePost.html') %>",
       scope:{
-        note: '='
+        note: '=',
+        setFocus: '=',
+        removeNoteFromArray: '='
       },
       link: function(scope, element, attrs){
         scope.bod = $sce.trustAsHtml(scope.note.body);
@@ -44,6 +46,8 @@ angular.module('notebookApp').directive('notePost', [
 
         scope.removeNote = function($event){
           if($event){$event.stopImmediatePropagation()}
+
+          scope.removeNoteFromArray(scope.note)
           element.remove()
           scope.note.$delete()
         }

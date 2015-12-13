@@ -12,14 +12,30 @@ angular.module('notebookApp').directive('noteArea', [
       },
       link: function(scope, element, attrs){
         element.click(function(e){
-          var box = this.getBoundingClientRect()
-          var hstore = {x: e.clientX - box.left, y: e.clientY - box.top}
-          var newNote = NoteSvc.build({body: '', hstore: hstore, divider_id: scope.dividerId})
-          newNote.$create()
-          scope.notes.push(newNote)
-
-          scope.$apply()
+          e.stopImmediatePropagation()
+          if(scope.divFocused){
+            scope.divFocused = false;
+          }
+          else{
+            var box = this.getBoundingClientRect()
+            var hstore = {x: e.clientX - box.left, y: e.clientY - box.top, width: 100}
+            var newNote = NoteSvc.build({body: '', hstore: hstore, divider_id: scope.dividerId})
+            newNote.$create({}, function(success){
+              scope.notes.push(NoteSvc.build(success))
+            })
+          }
         })
+
+        scope.setFocus = function(){
+          scope.divFocused = true;
+        }
+
+        scope.removeNoteFromArray = function(note){
+          var indexOfNote = scope.notes.indexOf(note);
+          if (indexOfNote > -1){
+            scope.notes.splice(indexOfNote, 1);
+          }
+        }
       }
     }
   }
