@@ -14,16 +14,27 @@ angular.module('notebookApp').directive('notePost', [
       link: function(scope, element, attrs){
         scope.bod = $sce.trustAsHtml(scope.note.body);
 
+        scope.setElementOffset = function(){
+          element.offset(
+            {
+              left: parseInt(scope.note.hstore.x) + parseInt(box.left),
+              top: parseInt(scope.note.hstore.y) + parseInt(box.top)
+            }
+          )
+        }
+
         var box = element[0].getBoundingClientRect()
         element.css('width', ('' + scope.note.hstore.width + 'px'))
         element.css('position', 'absolute')
-        element.offset(
-          {
-            left: parseInt(scope.note.hstore.x) + parseInt(box.left),
-            top: parseInt(scope.note.hstore.y) + parseInt(box.top)
-          }
-        )
+        scope.setElementOffset()
 
+        element.on('dragend', function(e){
+          scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX)
+          scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height())
+
+          scope.setElementOffset()
+          scope.note.$save()
+        })
 
         var bodyContainer = element.find('.body-container')
 
@@ -43,6 +54,7 @@ angular.module('notebookApp').directive('notePost', [
             scope.removeNote();
           }
         })
+
 
         scope.removeNote = function($event){
           if($event){$event.stopImmediatePropagation()}
