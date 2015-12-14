@@ -17,11 +17,11 @@ angular.module('notebookApp').directive('noteArea', [
             scope.divFocused = false;
           }
           else{
-            var box = this.getBoundingClientRect()
+            var box = this.getBoundingClientRect();
             var hstore = {x: e.clientX - box.left, y: e.clientY - box.top, width: 100}
-            var newNote = NoteSvc.build({body: '', hstore: hstore, divider_id: scope.dividerId})
+            var newNote = NoteSvc.build({body: '', hstore: hstore, divider_id: scope.dividerId});
             newNote.$create({}, function(success){
-              scope.notes.push(NoteSvc.build(success))
+              scope.notes.push(NoteSvc.build(success));
             })
           }
         })

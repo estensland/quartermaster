@@ -23,20 +23,20 @@ angular.module('notebookApp').directive('notePost', [
           )
         }
 
-        var box = element[0].getBoundingClientRect()
-        element.css('width', ('' + scope.note.hstore.width + 'px'))
-        element.css('position', 'absolute')
-        scope.setElementOffset()
+        var box = element[0].getBoundingClientRect();
+        element.css('width', ('' + scope.note.hstore.width + 'px'));
+        element.css('position', 'absolute');
+        scope.setElementOffset();
 
         element.on('dragend', function(e){
-          scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX)
-          scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height())
+          scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
+          scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height());
 
-          scope.setElementOffset()
-          scope.note.$save()
+          scope.setElementOffset();
+          scope.note.$save();
         })
 
-        var bodyContainer = element.find('.body-container')
+        var bodyContainer = element.find('.body-container');
 
         if(scope.note.body == ''){
           bodyContainer.focus();
@@ -44,8 +44,8 @@ angular.module('notebookApp').directive('notePost', [
 
         bodyContainer.on('input', function(){
           if (scope.note.id){
-            scope.note.body = bodyContainer.html()
-            scope.note.$save()
+            scope.note.body = bodyContainer.html();
+            scope.note.$save();
           }
         })
 
@@ -59,9 +59,9 @@ angular.module('notebookApp').directive('notePost', [
         scope.removeNote = function($event){
           if($event){$event.stopImmediatePropagation()}
 
-          scope.removeNoteFromArray(scope.note)
-          element.remove()
-          scope.note.$delete()
+          scope.removeNoteFromArray(scope.note);
+          element.remove();
+          scope.note.$delete();
         }
 
         scope.toggleTopBar = function(){
