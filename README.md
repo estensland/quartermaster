@@ -1,4 +1,4 @@
-=== Quartermaster
+#Quartermaster
 
 An app for bits of functionality, the core being a notebook/notes feature.
 
