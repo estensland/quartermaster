@@ -29,6 +29,7 @@ angular.module('notebookApp').directive('notePost', [
         scope.setElementOffset();
 
         element.on('dragend', function(e){
+          console.log(e)
           scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
           scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height());
 
