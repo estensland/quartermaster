@@ -28,14 +28,26 @@ angular.module('notebookApp').directive('notePost', [
         element.css('position', 'absolute');
         scope.setElementOffset();
 
+        element.attr('draggable', true)
+
         element.on('dragend', function(e){
-          console.log(e)
+          console.log('cheeese')
           scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
           scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height());
 
           scope.setElementOffset();
           scope.note.$save();
         })
+
+        var getElementDimensions = function(){
+          return {height: element.height(), width: element.outerWidth()}
+        }
+
+
+        // scope.$watch(
+        //   function(){if(getElementDimensions().width != 100 || getElementDimensions().height != 60){console.log(getElementDimensions())}},
+        //   function(){5}
+        // )
 
         var bodyContainer = element.find('.body-container');
 
