@@ -45,6 +45,6 @@ class Api::V1::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:order, :body, :active, :divider_id, hstore: [:x, :y, :width])
+    params.require(:note).permit(:order, :body, :active, :divider_id, hstore: [:x, :y, :width, :height])
   end
 end

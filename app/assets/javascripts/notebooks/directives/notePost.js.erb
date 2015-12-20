@@ -25,13 +25,17 @@ angular.module('notebookApp').directive('notePost', [
 
         var box = element[0].getBoundingClientRect();
         element.css('width', ('' + scope.note.hstore.width + 'px'));
+
+        if(scope.note.hstore.height){
+          element.css('height', ('' + scope.note.hstore.height + 'px'));
+        }
+
         element.css('position', 'absolute');
         scope.setElementOffset();
 
         element.attr('draggable', true)
 
         element.on('dragend', function(e){
-          console.log('cheeese')
           scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
           scope.note.hstore.y = parseInt(scope.note.hstore.y) + parseInt(e.originalEvent.offsetY) - parseInt(element.height());
 
@@ -44,10 +48,11 @@ angular.module('notebookApp').directive('notePost', [
         }
 
 
-        // scope.$watch(
-        //   function(){if(getElementDimensions().width != 100 || getElementDimensions().height != 60){console.log(getElementDimensions())}},
-        //   function(){5}
-        // )
+        element.on('mouseup', function(){
+          // scope.note.hstore.width = element.width()
+          // scope.note.hstore.height = element.height()
+          // scope.note.$save();
+        })
 
         var bodyContainer = element.find('.body-container');
 
