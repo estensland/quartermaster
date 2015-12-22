@@ -4,7 +4,7 @@ class Api::V1::NotebooksController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    @notebooks = Notebook.active
+    @notebooks = Notebook.active.order(:id)
     render json: @notebooks, each_serializer: NotebookSerializer
   end
 

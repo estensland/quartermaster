@@ -1,0 +1,7 @@
+<div class="col-md-8 tab-side">
+  <div class="notebook-tab" ng-class="{active: nb.id == showCtrl.notebook.id}" ng-repeat="nb in showCtrl.notebooks" style="background-color: #{{nb.color_hex}};">
+    <span ui-sref="notebook({id: nb.id})">
+      {{nb.name}}
+    </span>
+  </div>
+</div>

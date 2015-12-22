@@ -37,9 +37,7 @@
 
     .tab-side{
       .notebook-tab{
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-        border-left: 1px solid black;
+        border: 1px solid black;
         border-top-right-radius: 12px;
         border-top-left-radius: 12px;
 
@@ -54,6 +52,13 @@
         display: inline-block;
         line-height: 25px;
         vertical-align: bottom;
+        &.active{
+          font-weight: bold;
+          border-top: 1.5px solid black;
+          border-right: 1.5px solid black;
+          border-left: 1.5px solid black;
+          border-bottom: 0;
+        }
       }
     }
   }

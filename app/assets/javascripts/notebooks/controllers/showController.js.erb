@@ -9,7 +9,6 @@ angular.module('notebookApp')
         var showCtrl = this;
         showCtrl.notebook = NotebookSvc.build(notebook);
         showCtrl.notebooks = notebooks
-        console.log(notebooks)
 
         var openDividerSet = function(openingDivider){
           if(openingDivider.children && openingDivider.children.length > 0){
