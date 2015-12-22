@@ -35,6 +35,6 @@ class Api::V1::NotebooksController < ApplicationController
 
 
   def notebook_params
-    params.require(:notebook).permit(:name, :description, :active, :color_hex)
+    params.require(:notebook).permit(:name, :description, :active, :color_hex, :binder_id)
   end
 end

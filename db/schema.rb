@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121192249) do
+ActiveRecord::Schema.define(version: 20151222120136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "binders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "color_hex"
+    t.boolean  "active",      default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dividers", force: :cascade do |t|
     t.string   "name"
@@ -40,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151121192249) do
     t.string   "description"
     t.string   "color_hex"
     t.boolean  "active",      default: true
+    t.integer  "binder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +58,7 @@ ActiveRecord::Schema.define(version: 20151121192249) do
     t.text     "body"
     t.integer  "divider_id"
     t.hstore   "hstore"
+    t.integer  "order"
     t.boolean  "active",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"

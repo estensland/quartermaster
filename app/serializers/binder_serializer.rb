@@ -1,10 +1,9 @@
-class NotebookSerializer < ActiveModel::Serializer
+class BinderSerializer < ActiveModel::Serializer
   attributes  :id,
               :name,
               :color_hex,
               :created_at,
               :updated_at,
-              :binder_id,
               :active
-  has_many :children, serializer: DividerSerializer
+  has_many :notebooks, serializer: NotebookSerializer
 end

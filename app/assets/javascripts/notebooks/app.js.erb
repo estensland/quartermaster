@@ -53,7 +53,7 @@ angular
       }
     })
     .state('notebook', {
-      url: "/:id",
+      url: "/:binderi/notebooks/:id",
       templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
       controller: 'ShowController as showCtrl',
       resolve: {
@@ -68,13 +68,13 @@ angular
             });
           });
         },
-        notebooks: function($q, NotebookSvc){
+        binder: function($q, BinderSvc, $stateParams){
           return $q(function(resolve, reject){
-            NotebookSvc.resource.query().
+            BinderSvc.resource.query({binderi: $stateParams.binderi}).
             $promise.then(function(data) {
-              resolve(data.notebooks);
-
+              resolve(data.binder);
             }, function(error){
+                          console.log('aaaaa')
               reject(error);
             });
           });

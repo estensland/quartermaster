@@ -23,8 +23,8 @@
         </thead>
         <tbody>
           <tr ng-repeat="notebook in indexCtrl.notebooks">
-            <td>
-              {{notebook.name}}
+            <td >
+              <a href="#" ui-sref="notebook({id: notbook.id, binder_id: 1})">{{notebook.name}}</a>
             </td>
             <td>
               {{notebook.description}}
