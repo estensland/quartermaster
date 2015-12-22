@@ -10,14 +10,7 @@ angular.module('notebookApp')
         showCtrl.notebook = NotebookSvc.build(notebook);
         showCtrl.notebooks = binder.notebooks
 
-        var openDividerSet = function(openingDivider){
-          if(openingDivider.children && openingDivider.children.length > 0){
-            openingDivider = openDividerSet(openingDivider.children[0]);
-          }
-          return openingDivider;
-        }
-
-        showCtrl.currentDivider = openDividerSet(showCtrl.notebook);
+        showCtrl.currentDivider = showCtrl.notebook.children[0];
 
         showCtrl.setCurrentDivider = function(divider){
           showCtrl.currentDivider = divider;
