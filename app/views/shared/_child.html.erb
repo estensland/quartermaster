@@ -1,9 +1,0 @@
-<div class="col-md-12 child-container">
-  <div class="sidebar-divider">
-    <strong><%= child.name %></strong>
-    </p>
-  </div>
-  <% child.children.each do |child| %>
-    <%= render partial: 'shared/child', locals: { child: child }  %>
-  <% end %>
-</div>

@@ -2,7 +2,7 @@
 'use strict';
 
 angular
-  .module('notebookApp', [
+  .module('binderApp', [
     'ngAnimate',
     'ngResource',
     'ui.router',
@@ -36,7 +36,7 @@ angular
     $stateProvider
     .state('root', {
       url: "/",
-      templateUrl: "<%= asset_path('notebooks/templates/index.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/index.html') %>",
       controller: 'IndexController as indexCtrl',
       resolve: {
         notebooks: function($q, NotebookSvc){
@@ -54,7 +54,7 @@ angular
     })
     .state('notebook', {
       url: "/:binderi/notebooks/:id",
-      templateUrl: "<%= asset_path('notebooks/templates/show.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/show.html') %>",
       controller: 'ShowController as showCtrl',
       resolve: {
         notebook: function($q, NotebookSvc, $stateParams){

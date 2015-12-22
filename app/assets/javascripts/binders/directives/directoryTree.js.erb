@@ -1,0 +1,10 @@
+'use strict';
+
+angular.module('binderApp').directive('directoryTree', [
+  function(){
+    return{
+      restrict: 'E',
+      templateUrl: "<%= asset_path('binders/templates/directives/directoryTree.html') %>"
+    };
+  }
+]);

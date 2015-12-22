@@ -1,5 +1,5 @@
 'use strict';
-angular.module('notebookApp')
+angular.module('binderApp')
   .factory('BinderSvc', [
     '$resource',
     'NotebookSvc',

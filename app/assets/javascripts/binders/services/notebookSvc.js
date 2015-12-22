@@ -1,16 +1,16 @@
 'use strict';
-angular.module('notebookApp')
-  .factory('DividerSvc', [
+angular.module('binderApp')
+  .factory('NotebookSvc', [
     '$resource',
-    'NoteSvc',
-    function ($resource, NoteSvc) {
-      var Divider, Build, TransformInstance;
+    'DividerSvc',
+    function ($resource, DividerSvc) {
+      var Notebook, Build, TransformInstance;
 
-      TransformInstance = function(divider){
-        return Build(divider);
+      TransformInstance = function(notebook){
+        return Build(notebook);
       };
 
-      Divider  = $resource('/api/v1/dividers/:id', {
+      Notebook  = $resource('/api/v1/notebooks/:id', {
         id: '@id'
       },
       {
@@ -19,9 +19,9 @@ angular.module('notebookApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            angular.forEach(w.notebooks, function(divider, idx) {
+            angular.forEach(w.notebooks, function(notebook, idx) {
               // Replace each item with an instance of the resource object
-              w.dividers[idx] = TransformInstance(divider);
+              w.notebooks[idx] = TransformInstance(notebook);
             });
             return w;
           }
@@ -31,9 +31,9 @@ angular.module('notebookApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            w.divider = TransformInstance(w.divider);
-            w.divider.geographies = w.geographies;
-            return w.divider;
+            w.notebook = TransformInstance(w.notebook);
+            w.notebook.geographies = w.geographies;
+            return w.notebook;
           }
         },
         update: {
@@ -43,46 +43,42 @@ angular.module('notebookApp')
           method: 'POST',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {
-            var p = angular.toJson({divider: data});
+            var p = angular.toJson({notebook: data});
             return p;
           },
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
 
-            return w.divider;
+            return w.notebook;
           }
         }
       });
 
       Build = function(obj) {
+        obj = obj || {};
+
+        obj.children = obj.children || []
 
         var childs = []
         angular.forEach(obj.children, function(child){
-          childs.push(Build(child))
+          childs.push(DividerSvc.build(child))
         })
 
-        var notations = []
-        angular.forEach(obj.notes, function(note){
-          notations.push(NoteSvc.build(note))
-        })
-
-        obj = obj || {};
-        return new Divider({
+        return new Notebook({
           id:           obj.id            || null,
           name:         obj.name          || '',
-          description:  obj.description   || '',
-          parent_id:    obj.parent_id     || '',
           children:     childs,
-          notes:        notations,
-          parent_type:  obj.parent_type   || '',
+          description:  obj.description   || '',
+          color_hex:    obj.color_hex     || '#000000',
           active:       obj.active        || true,
+          binder_id:    obj.binder_id     || 0,
           created_at:   obj.created_at    || new Date(),
           updated_at:   obj.updated_at    || new Date()
         })
       };
 
       return {
-        resource: Divider,
+        resource: Notebook,
         build: Build,
       };
   }]);

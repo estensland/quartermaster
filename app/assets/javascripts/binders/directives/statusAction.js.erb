@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('notebookApp').directive('statusAction', [
+angular.module('binderApp').directive('statusAction', [
   function(){
     return{
       require :'?ngModel',
@@ -8,7 +8,7 @@ angular.module('notebookApp').directive('statusAction', [
       scope: {
         notebookStatus: '='
       },
-      templateUrl: "<%= asset_path('notebooks/templates/directives/statusAction.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/directives/statusAction.html') %>",
       link: function(scope){
         if (scope.notebookStatus) {
           scope.buttonName = 'Deactivate';

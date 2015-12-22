@@ -3,7 +3,7 @@
  * @author Mark Lagendijk
  * @license MIT
  */
-angular.module('notebookApp').factory('RecursionHelper', ['$compile', function($compile){
+angular.module('binderApp').factory('RecursionHelper', ['$compile', function($compile){
   return {
     /**
      * Manually compiles the element, fixing the recursion loop.

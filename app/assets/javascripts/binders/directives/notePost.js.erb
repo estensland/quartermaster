@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('notebookApp').directive('notePost', [
+angular.module('binderApp').directive('notePost', [
   '$sce',
   function($sce){
     return{
       restrict: 'E',
-      templateUrl: "<%= asset_path('notebooks/templates/directives/notePost.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/directives/notePost.html') %>",
       scope:{
         note: '=',
         setFocus: '=',

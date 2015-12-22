@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('notebookApp').directive('directoryEntry', [
+angular.module('binderApp').directive('directoryEntry', [
   'RecursionHelper',
   function(RecursionHelper){
     return{
@@ -9,7 +9,7 @@ angular.module('notebookApp').directive('directoryEntry', [
         object: '=',
         clicker: '='
       },
-      templateUrl: "<%= asset_path('notebooks/templates/directives/directoryEntry.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/directives/directoryEntry.html') %>",
       compile: function(element) {
         return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn){
           // Define your normal link function here.

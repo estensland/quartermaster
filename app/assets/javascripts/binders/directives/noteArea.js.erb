@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('notebookApp').directive('noteArea', [
+angular.module('binderApp').directive('noteArea', [
   'NoteSvc',
   function(NoteSvc){
     return{
       restrict: 'E',
-      templateUrl: "<%= asset_path('notebooks/templates/directives/noteArea.html') %>",
+      templateUrl: "<%= asset_path('binders/templates/directives/noteArea.html') %>",
       scope:{
         notes: '=',
         dividerId: '='
