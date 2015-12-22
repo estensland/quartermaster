@@ -60,9 +60,9 @@ angular.module('notebookApp').directive('notePost', [
 
 
         element.on('mouseup', function(){
-          // scope.note.hstore.width = element.width()
-          // scope.note.hstore.height = element.height()
-          // scope.note.$save();
+          scope.note.hstore.width = element.width()
+          scope.note.hstore.height = element.height()
+          scope.note.$save();
         })
 
         var bodyContainer = element.find('.body-container');
@@ -83,6 +83,12 @@ angular.module('notebookApp').directive('notePost', [
             scope.removeNote();
           }
         })
+
+        scope.showTopBar = false
+
+        scope.showTopBarNow = function(){
+          scope.showTopBar = !scope.showTopBar
+        }
 
 
         scope.removeNote = function($event){

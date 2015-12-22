@@ -3,10 +3,13 @@
 angular.module('notebookApp')
   .controller('ShowController', [
       'notebook',
+      'notebooks',
       'NotebookSvc',
-      function(notebook, NotebookSvc) {
+      function(notebook, notebooks, NotebookSvc) {
         var showCtrl = this;
         showCtrl.notebook = NotebookSvc.build(notebook);
+        showCtrl.notebooks = notebooks
+        console.log(notebooks)
 
         var openDividerSet = function(openingDivider){
           if(openingDivider.children && openingDivider.children.length > 0){

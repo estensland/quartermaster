@@ -67,6 +67,17 @@ angular
               reject(error);
             });
           });
+        },
+        notebooks: function($q, NotebookSvc){
+          return $q(function(resolve, reject){
+            NotebookSvc.resource.query().
+            $promise.then(function(data) {
+              resolve(data.notebooks);
+
+            }, function(error){
+              reject(error);
+            });
+          });
         }
       }
     })
