@@ -13,7 +13,7 @@
     <div class="col-md-8">
       <div class="row col-md-12">
         <h3>
-          {{ showCtrl.currentDivider.name }}
+          <input type="text" ng-model="showCtrl.currentDivider.name" ng-change="showCtrl.updateDivider(showCtrl.currentDivider)">
         </h3>
       </div>
       <div class="row col-md-12">

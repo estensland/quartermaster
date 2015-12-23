@@ -40,6 +40,19 @@ angular.module('binderApp')
           method: 'PUT'
         },
         save: {
+          method: 'PUT',
+          isArray: false, // <- not returning an array
+          transformRequest: function(data, header) {
+            var p = angular.toJson({divider: data});
+            return p;
+          },
+          transformResponse: function(data, header) {
+            var w = angular.fromJson(data);
+
+            return w.divider;
+          }
+        },
+        create: {
           method: 'POST',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {

@@ -34,8 +34,6 @@ class Api::V1::DividersController < ApplicationController
     else
       render json: {error: 'Creation Failed'}
     end
-
-    redirect_to :show
   end
 
 
