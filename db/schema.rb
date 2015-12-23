@@ -31,7 +31,8 @@ ActiveRecord::Schema.define(version: 20151222120136) do
     t.string   "description"
     t.integer  "parent_id"
     t.string   "parent_type"
-    t.boolean  "active",      default: true
+    t.boolean  "active",        default: true
+    t.integer  "display_order", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

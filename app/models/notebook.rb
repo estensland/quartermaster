@@ -1,10 +1,10 @@
 class Notebook < ActiveRecord::Base
-    # MODULES
+  # MODULES
   include ActiveConcerns
 
   # ASSOCIATIONS
   has_many :children, as: :parent, class_name: 'Divider'
-  belongs_to :binder
+  belongs_to :binder, -> { order :display_order }
 
   # SCOPES
   # VALIDATIONS

@@ -1,7 +1,7 @@
 Gif.find_or_create_by(name: 'Why you fail', url: "http://i0.kym-cdn.com/photos/images/original/000/896/093/3b8.gif", active: true)
 Gif.find_or_create_by(name: 'Head hit desk', url: "http://i1145.photobucket.com/albums/o503/KimmieRocks/head-desk-bartlett_zps7aadc009.gif", active: true)
 
-bindayr = Binder.find_or_create_by(name: 'Practice Binder', color_hex: '#dddddd')
+bindayr = Binder.find_or_create_by(name: 'Practice Binder', color_hex: '#D4A190')
 
 Notebook.find_or_create_by(name: 'test', description: 'this...is a test....test.....test....test', color_hex: '6fceed', binder: bindayr)
 noteymcnotersen = Notebook.find_or_create_by(name: 'Another Notebranched', description: 'Where we keep notes and junk', color_hex: '0AA7AB', binder: bindayr)

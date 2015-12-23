@@ -30,6 +30,7 @@ angular.module('binderApp')
 
         showCtrl.createNotebook = function(){
           var newNotebook = NotebookSvc.build({name: 'New Notebook', color_hex: binder.color_hex, binder_id: binder.id})
+
           newNotebook.$create(function(data){
             showCtrl.notebooks.push(newNotebook)
             $state.go('notebook', {binder_id: binder.id, id: data.id})
@@ -42,7 +43,9 @@ angular.module('binderApp')
         }
 
         showCtrl.addChildDivider = function(object){
-          var newDivider = DividerSvc.build({name: 'New Divider', parent_id: object.id, parent_type: 'Divider'})
+          var displayOrder = object.children.length
+          var newDivider = DividerSvc.build({name: 'New Divider', parent_id: object.id, parent_type: 'Divider', display_order: displayOrder})
+
           newDivider.$create(function(data){
             object.children.push(newDivider)
             showCtrl.setCurrentDivider(newDivider)

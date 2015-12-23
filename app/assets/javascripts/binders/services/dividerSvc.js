@@ -81,16 +81,17 @@ angular.module('binderApp')
 
         obj = obj || {};
         return new Divider({
-          id:           obj.id            || null,
-          name:         obj.name          || '',
-          description:  obj.description   || '',
-          parent_id:    obj.parent_id     || '',
-          children:     childs,
-          notes:        notations,
-          parent_type:  obj.parent_type   || '',
-          active:       obj.active        || true,
-          created_at:   obj.created_at    || new Date(),
-          updated_at:   obj.updated_at    || new Date()
+          id:            obj.id            || null,
+          name:          obj.name          || '',
+          description:   obj.description   || '',
+          parent_id:     obj.parent_id     || '',
+          children:      childs,
+          notes:         notations,
+          parent_type:   obj.parent_type   || '',
+          active:        obj.active        || true,
+          display_order: obj.display_order || 0,
+          created_at:    obj.created_at    || new Date(),
+          updated_at:    obj.updated_at    || new Date()
         })
       };
 

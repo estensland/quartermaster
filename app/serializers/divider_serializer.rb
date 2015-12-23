@@ -5,6 +5,7 @@ class DividerSerializer < ActiveModel::Serializer
               :created_at,
               :parent_id,
               :parent_type,
+              :display_order,
               :active
   has_many :children, serializer: DividerSerializer
   has_many :notes, serializer: NoteSerializer
