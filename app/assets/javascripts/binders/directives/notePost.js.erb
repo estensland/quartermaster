@@ -27,13 +27,9 @@ angular.module('binderApp').directive('notePost', [
 
         var box = element[0].getBoundingClientRect();
         element.css('width', ('' + scope.note.hstore.width + 'px'));
-        // element.css('width', ('0px'));
-        // element.css('width', ('' + scope.note.hstore.width + 'px'));
 
         if(scope.note.hstore.height){
           element.css('height', ('' + scope.note.hstore.height + 'px'));
-          // element.css('height', ('0px'));
-          // element.css('height', ('' + scope.note.hstore.height + 'px'));
         }
 
         element.on('dblclick',function(){
@@ -44,7 +40,7 @@ angular.module('binderApp').directive('notePost', [
         element.css('position', 'absolute');
         scope.setElementOffset();
 
-        element.attr('draggable', true)
+        element.attr('draggable', true);
 
         element.on('dragend', function(e){
           scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
@@ -60,8 +56,8 @@ angular.module('binderApp').directive('notePost', [
 
 
         element.on('mouseup', function(){
-          scope.note.hstore.width = element.width()
-          scope.note.hstore.height = element.height()
+          scope.note.hstore.width = element.width();
+          scope.note.hstore.height = element.height();
           scope.note.$save();
         })
 
