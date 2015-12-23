@@ -11,6 +11,7 @@ class Api::V1::NotebooksController < ApplicationController
   def create
     @notebook = Notebook.new(notebook_params)
     if @notebook.save
+      @notebook.children << Divider.create(name: 'New Divider')
       render json: @notebook, location: api_v1_notebooks_path
     else
       render json: {error: 'Creation failed'}

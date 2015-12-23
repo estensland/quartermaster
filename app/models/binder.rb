@@ -3,7 +3,7 @@ class Binder < ActiveRecord::Base
   include ActiveConcerns
 
   # ASSOCIATIONS
-  has_many :notebooks
+  has_many :notebooks, -> { order :id }
 
   # SCOPES
   # VALIDATIONS
