@@ -41,6 +41,15 @@ angular.module('binderApp')
           divider.$save();
         }
 
+        showCtrl.addChildDivider = function(object){
+          var newDivider = DividerSvc.build({name: 'New Divider', parent_id: object.id, parent_type: 'Divider'})
+          newDivider.$create(function(data){
+            object.children.push(newDivider)
+            showCtrl.setCurrentDivider(newDivider)
+          });
+
+        }
+
         showCtrl.updateNotebook = function(){
           showCtrl.notebook.$save();
         }

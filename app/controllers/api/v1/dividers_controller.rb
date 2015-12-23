@@ -39,6 +39,6 @@ class Api::V1::DividersController < ApplicationController
 
 
   def divider_params
-    params.require(:divider).permit(:name, :description, :active, :parent_id)
+    params.require(:divider).permit(:name, :description, :active, :parent_id, :parent_type)
   end
 end

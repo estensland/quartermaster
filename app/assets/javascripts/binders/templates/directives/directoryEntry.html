@@ -1,8 +1,15 @@
 <li>
-  <div class="marker" ng-click="clicker(object)">{{object.name}}</div>
+  <div class="marker">
+    <a href="#" ng-click="clicker(object)">
+      {{object.name}}
+    </a>
+    <a href="#" class="pull-right add-divider" ng-click="newDivider(object)">
+      +
+    </a>
+  </div>
   <ul class="directory-list" ng-if="object.children.length > 0">
     <li ng-repeat="child in object.children">
-      <directory-entry object="child" clicker="clicker"> </directory-entry>
+      <directory-entry object="child" clicker="clicker" new-divider="newDivider"> </directory-entry>
     </li>
   </ul>
 </li>
