@@ -1,9 +1,9 @@
 <li>
-  <div class="marker">
+  <div class="marker" ng-mouseover="showPlus = true" ng-mouseleave="showPlus = false">
     <a href="#" ng-click="clicker(object)">
       {{object.name}}
     </a>
-    <a href="#" class="pull-right add-divider" ng-click="newDivider(object)">
+    <a href="#" class="pull-right add-divider" ng-click="newDivider(object)" ng-show="showPlus">
       +
     </a>
   </div>
