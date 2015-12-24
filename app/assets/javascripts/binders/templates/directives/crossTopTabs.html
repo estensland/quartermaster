@@ -1,16 +1,16 @@
 <div class="col-md-8 tab-side">
   <div class="notebook-tab" ng-class="{active: nb.id == showCtrl.notebook.id}" ng-repeat="nb in showCtrl.notebooks" style="background-color: #{{nb.color_hex}};">
     <span ui-sref="notebook({id: nb.id})">
-      <span ng-if="nb.id != showCtrl.notebook.id">
+      <a href='#' ng-if="nb.id != showCtrl.notebook.id">
         {{nb.name}}
       </span>
-      <span ng-if="nb.id === showCtrl.notebook.id">
+      <a href='#' ng-if="nb.id === showCtrl.notebook.id">
         {{showCtrl.notebook.name}}
       </span>
     </span>
   </div>
   <div class="notebook-tab" style="background-color: #{{showCtrl.binder.color_hex}};">
-    <span ng-click="showCtrl.createNotebook()">
+    <a href='#' ng-click="showCtrl.createNotebook()">
       {{" + "}}
     </span>
   </div>
