@@ -1,4 +1,4 @@
-<li class="draggable-li">
+<li class="draggable-li  {{lastListed ? 'last-of-list' : ''}}">
   <div class="marker" ng-mouseover="showPlus = true" ng-mouseleave="showPlus = false">
     <a class="pointer-me" ng-click="clicker(object)">
       {{object.name}}
@@ -9,7 +9,8 @@
   </div>
   <ul class="directory-list" ng-if="object.children.length > 0">
     <li ng-repeat="child in object.children">
-      <directory-entry object="child" clicker="clicker" new-divider="newDivider"> </directory-entry>
+      <directory-entry object="child" clicker="clicker" new-divider="newDivider" last-listed="$last">
+      </directory-entry>
     </li>
   </ul>
 </li>

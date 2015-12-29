@@ -15,7 +15,9 @@ angular.module('binderApp').directive('directoryTree', [
             angular.forEach(element.find('directory-entry'), function(el){
               if(el != scope.dragmode.parentElement){
                 $(el).before("<li class=\"drop-zone\" ></li>");
-                $(el).after("<li class=\"drop-zone\" argh=\"Argh\"></li>");
+                if($($(el).find('li')[0]).hasClass('last-of-list')){
+                  $(el).after("<li class=\"drop-zone\" argh=\"Argh\"></li>");
+                }
               }
             })
           }, 5)

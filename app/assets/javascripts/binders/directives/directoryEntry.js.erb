@@ -8,7 +8,8 @@ angular.module('binderApp').directive('directoryEntry', [
       scope: {
         object: '=',
         clicker: '=',
-        newDivider: '='
+        newDivider: '=',
+        lastListed: '='
       },
       templateUrl: "<%= asset_path('binders/templates/directives/directoryEntry.html') %>",
       compile: function(element) {
