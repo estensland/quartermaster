@@ -1,3 +1,8 @@
+.pointer-me{
+  cursor: pointer;
+}
+
+
 .notebook-view{
   min-height: 500px;
   .child-container{
@@ -92,21 +97,39 @@
     .directory-list{
       padding-left: 9px;
       list-style: none;
-      .marker{
-        margin: 0px;
-        margin-top: -1px;
-        padding-left: 9px;
-        border: 1px solid black;
-        background-color: cornsilk;
-        a{
-          color: #000000;
-          &:hover{
-            margin-left: -1.5px;
-            text-decoration: none;
-            font-weight: bold;
+      li{
+        .marker{
+          margin: 0px;
+          margin-top: -1px;
+          padding-left: 9px;
+          border: 1px solid black;
+          background-color: cornsilk;
+          a{
+            color: #000000;
+            &:hover{
+              margin-left: -1.5px;
+              text-decoration: none;
+              font-weight: bold;
+            }
           }
         }
       }
+      .drop-zone{
+        display: block;
+        width: 100%;
+        height: 5px;
+        border: 1px solid black;
+        border-radius: 4px;
+        height: 15px;
+        margin: 2px 0;
+        &.dragover{
+          height: 20px;
+          background-color: #DD2200;
+          border: 1px solid black;
+          border-radius: 4px;
+        }
+      }
+
     }
 
   }

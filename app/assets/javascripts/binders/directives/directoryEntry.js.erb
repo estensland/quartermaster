@@ -12,6 +12,7 @@ angular.module('binderApp').directive('directoryEntry', [
       },
       templateUrl: "<%= asset_path('binders/templates/directives/directoryEntry.html') %>",
       compile: function(element) {
+        element.find('li.draggable-li').attr('draggable', true);
         return RecursionHelper.compile(element, function(scope, iElement, iAttrs, controller, transcludeFn){
           // Define your normal link function here.
           // Alternative: instead of passing a function,

@@ -4,7 +4,49 @@ angular.module('binderApp').directive('directoryTree', [
   function(){
     return{
       restrict: 'E',
-      templateUrl: "<%= asset_path('binders/templates/directives/directoryTree.html') %>"
+      templateUrl: "<%= asset_path('binders/templates/directives/directoryTree.html') %>",
+      link: function(scope, element, attrs){
+        scope.dragmode = false;
+        element.on('dragstart', 'li', function(e){
+          e.stopPropagation()
+          scope.dragmode = e.originalEvent.target;
+
+          setTimeout(function(){
+            angular.forEach(element.find('directory-entry'), function(el){
+              if(el != scope.dragmode.parentElement){
+                $(el).before("<li class=\"drop-zone\" ></li>");
+                $(el).after("<li class=\"drop-zone\" argh=\"Argh\"></li>");
+              }
+            })
+          }, 5)
+        })
+
+        element.on('dragend', 'li', function(e){
+          e.stopPropagation()
+          scope.dragmode = false;
+          $(".drop-zone").remove()
+        })
+
+        element.on('dragenter', '.drop-zone', function(e){
+          var el = e.originalEvent.target
+          if(el.parentElement != scope.dragmode){
+            $(el).addClass('dragover')
+          }
+        })
+
+        element.on('dragleave', '.drop-zone', function(e){
+          var el = e.originalEvent.target
+          if(el.parentElement != scope.dragmode){
+            $(el).removeClass('dragover')
+          }
+        })
+
+        element.on('mousemove', function(e){
+          if(scope.dragmode){
+            $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
+          }
+        })
+      }
     };
   }
 ]);
