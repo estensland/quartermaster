@@ -7,39 +7,60 @@ angular.module('binderApp').directive('directoryTree', [
       templateUrl: "<%= asset_path('binders/templates/directives/directoryTree.html') %>",
       link: function(scope, element, attrs){
         scope.dragmode = false;
+        scope.dragova = false;
         element.on('dragstart', 'li', function(e){
           e.stopPropagation()
-          scope.dragmode = e.originalEvent.target;
+          scope.dragmode = e.originalEvent.target.attributes.dividerId.value;
 
           setTimeout(function(){
             angular.forEach(element.find('directory-entry'), function(el){
-              if(el != scope.dragmode.parentElement){
-                $(el).before("<li class=\"drop-zone\" ></li>");
+              if(el.attributes['child-id'].value != scope.dragmode){
+                el.attributes['child-id'] = el.attributes['child-id'] || {}
+                $(el).before("<li class=\"drop-zone\" before=\"" + el.attributes['child-id'].value + "\" ></li>");
                 if($($(el).find('li')[0]).hasClass('last-of-list')){
-                  $(el).after("<li class=\"drop-zone\" argh=\"Argh\"></li>");
+                  $(el).after("<li class=\"drop-zone\" after=\"" + el.attributes['child-id'].value + "\"></li>");
                 }
               }
             })
           }, 5)
         })
 
+        scope.reOrganizeTree = function(dividerId, newSibId, relation){
+          // save new order start here
+        }
+
         element.on('dragend', 'li', function(e){
-          e.stopPropagation()
+          e.stopPropagation();
+
+          if(scope.dragova){
+            var newSibId, relation;
+
+            if(scope.dragova.attributes['before']){
+              relation = 'before';
+              newSibId = scope.dragova.attributes['before'].value;
+            }
+            else if(scope.dragova.attributes['after']){
+              relation = 'after';
+              newSibId = scope.dragova.attributes['after'].value;
+            }
+
+            if(relation && newSibId){
+              scope.reOrganizeTree(scope.dragmode, newSibId, relation)
+            }
+          }
+
+          // Clear drag mode
           scope.dragmode = false;
           $(".drop-zone").remove()
         })
 
         element.on('dragenter', '.drop-zone', function(e){
           var el = e.originalEvent.target
-          if(el.parentElement != scope.dragmode){
-            $(el).addClass('dragover')
-          }
-        })
 
-        element.on('dragleave', '.drop-zone', function(e){
-          var el = e.originalEvent.target
+          $('.dragover').removeClass('dragover');
           if(el.parentElement != scope.dragmode){
-            $(el).removeClass('dragover')
+            $(el).addClass('dragover');
+            scope.dragova = el
           }
         })
 
