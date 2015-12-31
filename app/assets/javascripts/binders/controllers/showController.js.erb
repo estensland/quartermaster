@@ -95,14 +95,50 @@ angular.module('binderApp')
         }
 
         showCtrl.reOrganizeTree = function(dividerId, newSibId, relation){
-          var movedDivider, newSibDivider;
+          var movedDivider, newSibDivider, localeParent, newParent;
 
-          movedDivider  = cycleChildren(showCtrl.notebook.children, dividerId)
+          movedDivider  = cycleChildren(showCtrl.notebook.children, dividerId);
+          newSibDivider = cycleChildren(showCtrl.notebook.children, newSibId);
+          localeParent  = {id: newSibDivider.parent_id, type: newSibDivider.parent_type}
 
-          newSibDivider = cycleChildren(showCtrl.notebook.children, newSibId)
+          if (localeParent === 'Notebook') {
+            newParent = showCtrl.notebook ;
+          }
+          else{
+            newParent = cycleChildren(showCtrl.notebook.children, localeParent.id);
+          };
 
-          console.log([movedDivider.name, newSibDivider.name])
-          // save new order start here
+          var localeOrdering = newSibDivider.display_order;
+
+          movedDivider.parent_id = localeParent.id;
+          movedDivider.parent_type = localeParent.type;
+
+          var indexCounter = 0;
+
+          newParent.children.forEach(function(child){
+            if(movedDivider != child){
+              if(newSibDivider === child){
+                console.log(relation)
+                if (relation === 'before') {
+                  movedDivider.display_order = indexCounter;
+                  indexCounter ++;
+                  child.display_order = indexCounter;
+                } else{
+                  child.display_order = indexCounter;
+                  indexCounter ++;
+                  movedDivider.display_order = indexCounter;
+                };
+                movedDivider.$save();
+              }
+              else{
+                child.display_order = indexCounter;
+              }
+              child.$save();
+              indexCounter ++;
+            }
+          });
+
+          window.location.reload();
         }
 
         element.on('dragend', 'li', function(e){
