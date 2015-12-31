@@ -55,5 +55,95 @@ angular.module('binderApp')
         showCtrl.updateNotebook = function(){
           showCtrl.notebook.$save();
         }
+
+        showCtrl.reOrganizeTree = function(dividerId, newSibId, relation){
+          debugger
+        }
+
+        var element = $('directory-tree')
+
+        showCtrl.dragmode = false;
+        showCtrl.dragova = false;
+        element.on('dragstart', 'li', function(e){
+          e.stopPropagation();
+          showCtrl.dragmode = e.originalEvent.target.attributes.dividerId.value;
+
+          setTimeout(function(){
+            angular.forEach(element.find('directory-entry'), function(el){
+              if(el.attributes['child-id'].value != showCtrl.dragmode){
+                el.attributes['child-id'] = el.attributes['child-id'] || {};
+                $(el).before("<li class=\"drop-zone\" before=\"" + el.attributes['child-id'].value + "\" ></li>");
+                if($($(el).find('li')[0]).hasClass('last-of-list')){
+                  $(el).after("<li class=\"drop-zone\" after=\"" + el.attributes['child-id'].value + "\"></li>");
+                }
+              }
+            })
+          }, 5)
+        })
+
+        var cycleChildren = function(children, id){
+          var match;
+          children.forEach(function(child){
+            if(parseInt(child.id) === parseInt(id)){
+              match = child
+            }
+            else if(!match && child.children.length > 0){
+              match =  cycleChildren(child.children, id)
+            }
+          })
+          return match;
+        }
+
+        showCtrl.reOrganizeTree = function(dividerId, newSibId, relation){
+          var movedDivider, newSibDivider;
+
+          movedDivider  = cycleChildren(showCtrl.notebook.children, dividerId)
+
+          newSibDivider = cycleChildren(showCtrl.notebook.children, newSibId)
+
+          console.log([movedDivider.name, newSibDivider.name])
+          // save new order start here
+        }
+
+        element.on('dragend', 'li', function(e){
+          e.stopPropagation();
+
+          if(showCtrl.dragova){
+            var newSibId, relation;
+
+            if(showCtrl.dragova.attributes['before']){
+              relation = 'before';
+              newSibId = showCtrl.dragova.attributes['before'].value;
+            }
+            else if(showCtrl.dragova.attributes['after']){
+              relation = 'after';
+              newSibId = showCtrl.dragova.attributes['after'].value;
+            }
+
+            if(relation && newSibId){
+              showCtrl.reOrganizeTree(showCtrl.dragmode, newSibId, relation)
+            }
+          }
+
+          // Clear drag mode
+          showCtrl.dragmode = false;
+          $(".drop-zone").remove()
+        })
+
+        element.on('dragenter', '.drop-zone', function(e){
+          var el = e.originalEvent.target
+
+          $('.dragover').removeClass('dragover');
+          if(el.parentElement != showCtrl.dragmode){
+            $(el).addClass('dragover');
+            showCtrl.dragova = el
+          }
+        })
+
+        element.on('mousemove', 'directory-tree', function(e){
+          if(showCtrl.dragmode){
+            $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
+          }
+        })
       }
   ]);
