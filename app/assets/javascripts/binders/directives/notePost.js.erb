@@ -60,7 +60,7 @@ angular.module('binderApp').directive('notePost', [
 
           if(e.originalEvent.dataTransfer){
             src = e.originalEvent.dataTransfer.getData("text/uri-list");
-            scope.note.body = scope.note.body + "<img src=\"" + src + "\">"
+            scope.note.body = scope.note.body + "<img class=\"dropped-image\" src=\"" + src + "\">"
             scope.note.$save()
             scope.bod = $sce.trustAsHtml(scope.note.body);
           }
