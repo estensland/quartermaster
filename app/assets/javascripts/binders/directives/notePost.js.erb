@@ -54,6 +54,23 @@ angular.module('binderApp').directive('notePost', [
           return {height: element.height(), width: element.outerWidth()}
         }
 
+        element.on('drop', function(e){
+          e.stopImmediatePropagation(); e.preventDefault();
+          var src;
+
+          if(e.originalEvent.dataTransfer){
+            src = e.originalEvent.dataTransfer.getData("text/uri-list");
+            scope.note.body = scope.note.body + "<img src=\"" + src + "\">"
+            scope.note.$save()
+            scope.bod = $sce.trustAsHtml(scope.note.body);
+          }
+        })
+
+        element.on('dragover dragenter', function(e){
+          e.stopImmediatePropagation(); e.preventDefault();
+        })
+
+
 
         element.on('mouseup', function(){
           scope.note.hstore.width = element.width();
