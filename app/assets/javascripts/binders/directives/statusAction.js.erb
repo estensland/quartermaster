@@ -6,11 +6,11 @@ angular.module('binderApp').directive('statusAction', [
       require :'?ngModel',
       restrict: 'E',
       scope: {
-        notebookStatus: '='
+        binderStatus: '='
       },
       templateUrl: "<%= asset_path('binders/templates/directives/statusAction.html') %>",
       link: function(scope){
-        if (scope.notebookStatus) {
+        if (scope.binderStatus) {
           scope.buttonName = 'Deactivate';
           scope.buttonClass = "btn-danger";
         }

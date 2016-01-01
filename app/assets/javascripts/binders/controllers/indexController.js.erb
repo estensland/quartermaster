@@ -2,10 +2,10 @@
 
 angular.module('binderApp')
   .controller('IndexController', [
-      'notebooks',
-      'NotebookSvc',
-      function(notebooks, NotebookSvc) {
+      'binders',
+      'BinderSvc',
+      function(binders, BinderSvc) {
         var indexCtrl = this;
-        indexCtrl.notebooks = notebooks
+        indexCtrl.binders = binders
       }
   ]);
