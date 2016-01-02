@@ -5,6 +5,7 @@ class BinderSerializer < ActiveModel::Serializer
               :color_hex,
               :created_at,
               :updated_at,
+              :shelf_id,
               :active
   has_many :notebooks, serializer: NotebookSerializer
 end

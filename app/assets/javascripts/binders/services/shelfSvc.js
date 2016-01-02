@@ -1,17 +1,17 @@
 'use strict';
 angular.module('binderApp')
-  .factory('BinderSvc', [
+  .factory('ShelfSvc', [
     '$resource',
-    'NotebookSvc',
-    function ($resource, NotebookSvc) {
-      var Binder, Build, TransformInstance;
+    'BinderSvc',
+    function ($resource, BinderSvc) {
+      var Shelf, Build, TransformInstance;
 
-      TransformInstance = function(binder){
-        return Build(binder);
+      TransformInstance = function(shelf){
+        return Build(shelf);
       };
 
-      Binder  = $resource('/api/v1/binders/:binderi', {
-        binderi: '@binderi'
+      Shelf  = $resource('/api/v1/shelves/:shelfi', {
+        shelfi: '@shelfi'
       },
       {
         query: {
@@ -19,9 +19,9 @@ angular.module('binderApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            angular.forEach(w.binders, function(binder, idx) {
+            angular.forEach(w.shelf, function(shelf, idx) {
               // Replace each item with an instance of the resource object
-              w.binders[idx] = TransformInstance(binder);
+              w.shelf[idx] = TransformInstance(shelf);
             });
             return w;
           }
@@ -31,9 +31,9 @@ angular.module('binderApp')
           isArray: false, // <- not returning an array
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
-            w.binder = TransformInstance(w.binder);
-            w.binder.geographies = w.geographies;
-            return w.binder;
+            w.shelf = TransformInstance(w.shelf);
+            w.shelf.geographies = w.geographies;
+            return w.shelf;
           }
         },
         update: {
@@ -43,13 +43,13 @@ angular.module('binderApp')
           method: 'POST',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {
-            var p = angular.toJson({binder: data});
+            var p = angular.toJson({shelf: data});
             return p;
           },
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
 
-            return w.binder;
+            return w.shelf;
           }
         }
       });
@@ -57,20 +57,19 @@ angular.module('binderApp')
       Build = function(obj) {
         obj = obj || {};
 
-        obj.notebooks = obj.notebooks || []
+        obj.binders = obj.binders || []
 
-        var nBooks = []
-        angular.forEach(obj.notebooks, function(nBook){
-          nBooks.push(NotebookSvc.build(nBook))
+        var bindas = []
+        angular.forEach(obj.binders, function(binda){
+          bindas.push(BinderSvc.build(binda))
         })
 
-        return new Binder({
+        return new Shelf({
           id:           obj.id            || null,
           name:         obj.name          || '',
-          notebooks:    nBooks,
+          binders:      bindas,
           description:  obj.description   || '',
           color_hex:    obj.color_hex     || '#000000',
-          shelf_id:     obj.shelf_id      || true,
           active:       obj.active        || true,
           created_at:   obj.created_at    || new Date(),
           updated_at:   obj.updated_at    || new Date()
@@ -78,7 +77,7 @@ angular.module('binderApp')
       };
 
       return {
-        resource: Binder,
+        resource: Shelf,
         build: Build,
       };
   }]);

@@ -35,6 +35,6 @@ class Api::V1::BindersController < ApplicationController
 
 
   def binder_params
-    params.require(:binder).permit(:name, :description, :active, :color_hex)
+    params.require(:binder).permit(:name, :description, :active, :color_hex, :shelf_id)
   end
 end

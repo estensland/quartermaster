@@ -1,10 +1,9 @@
-class Binder < ActiveRecord::Base
+class Shelf < ActiveRecord::Base
   # MODULES
   include ActiveConcerns
 
   # ASSOCIATIONS
-  belongs_to :shelf
-  has_many :notebooks, -> { order :id }
+  has_many :binders, -> { order :name }
 
   # SCOPES
   # VALIDATIONS

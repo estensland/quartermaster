@@ -1,10 +1,8 @@
-class CreateBinders < ActiveRecord::Migration
+class CreateShelves < ActiveRecord::Migration
   def change
-    create_table :binders do |t|
+    create_table :shelves do |t|
       t.string :name
       t.string :description
-      t.string :color_hex
-      t.integer :shelf_id
       t.boolean :active, default: true
 
       t.timestamps

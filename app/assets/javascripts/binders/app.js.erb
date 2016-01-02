@@ -39,11 +39,11 @@ angular
       templateUrl: "<%= asset_path('binders/templates/index.html') %>",
       controller: 'IndexController as indexCtrl',
       resolve: {
-        binders: function($q, BinderSvc){
+        shelves: function($q, ShelfSvc){
           return $q(function(resolve, reject){
-            BinderSvc.resource.query().
+            ShelfSvc.resource.query().
             $promise.then(function(data) {
-              resolve(data.binders);
+              resolve(data.shelves);
 
             }, function(error){
               reject(error);
