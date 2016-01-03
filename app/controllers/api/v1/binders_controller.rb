@@ -11,7 +11,7 @@ class Api::V1::BindersController < ApplicationController
   def create
     @binder = Binder.new(binder_params)
     if @binder.save
-      render json: @binder, location: api_v1_binder_path
+      render json: @binder, serializer: BinderSerializer
     else
       render json: {error: 'Creation failed'}
     end

@@ -7,15 +7,16 @@
       </h1>
       <div class="row col-md-12 individual-shelf" ng-repeat="shelf in indexCtrl.shelves">
         <div class="text-center binder-row row col-md-12">
-          <div class="row text-center col-md-1 binder binder-on-shelf" ng-repeat="binder in shelf.binders" style="background-color:{{binder.color_hex}}">
-            <a href="#" ui-sref="notebook({binderi: binder.id, id: binder.notebooks[0].id})" class="binder-linkage">
-              <p>{{binder.name}}</p>
-            </a>
+          <div class="row text-center col-md-1 binder binder-on-shelf pointer-me" ng-repeat="binder in shelf.binders" style="background-color:{{binder.color_hex}}" ui-sref="notebook({binderi: binder.id, id: binder.notebooks[0].id})">
+            <p>{{binder.name}}</p>
           </div>
         </div>
         <div class="text-center shelf-name row col-md-12">
           <h4>
             {{shelf.name}}
+            <span class="pull-right pointer-me" ng-click="indexCtrl.addBinder(shelf)">
+              +
+            </span>
           </h4>
         </div>
       </div>

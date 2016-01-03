@@ -4,15 +4,21 @@ angular.module('binderApp')
   .controller('IndexController', [
       'shelves',
       'ShelfSvc',
-      function(shelves, ShelfSvc) {
+      'BinderSvc',
+      function(shelves, ShelfSvc, BinderSvc) {
         var indexCtrl = this;
-        indexCtrl.shelves = shelves
-        indexCtrl.binders = []
+        indexCtrl.shelves = shelves;
+        indexCtrl.binders = [];
         indexCtrl.shelves.forEach(function(shelf){
           if(shelf.binders && shelf.binders.length && shelf.binders.length > 0){
-            indexCtrl.binders = indexCtrl.binders.concat(shelf.binders)
+            indexCtrl.binders = indexCtrl.binders.concat(shelf.binders);
           }
-
         })
+
+        indexCtrl.addBinder = function(shelf){
+          var newBinder = BinderSvc.build({name: 'New Binder', shelf_id: shelf.id});
+          newBinder.$save();
+          shelf.binders.push(newBinder);
+        }
       }
   ]);
