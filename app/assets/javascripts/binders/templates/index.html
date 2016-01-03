@@ -1,40 +1,24 @@
 <div class="container" >
 
-  <div class="row">
+  <div class="row bookshelf">
     <div class="col-md-1">
     </div>
     <div class="col-md-8">
-      <h3 class="text-center">
+      <h1 class="text-center">
         Shelves
-      </h3>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>
-              Binder
-            </th>
-            <th>
-              Description
-            </th>
-            <th>
-              Status Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="binder in indexCtrl.binders">
-            <td >
-              <a href="#" ui-sref="binder({id: notbook.id, binder_id: 1})">{{binder.name}}</a>
-            </td>
-            <td>
-              {{binder.description}}
-            </td>
-            <td>
-              <status-action binder-status="binder.active">
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      </h1>
+      <div class="row col-md-12 individual-shelf" ng-repeat="shelf in indexCtrl.shelves">
+        <div class="text-center binder-row row col-md-12">
+          <div class="row text-center col-md-2 binder binder-on-shelf" ng-repeat="binder in shelf.binders">
+            {{binder.name}}
+          </div>
+        </div>
+        <div class="text-center shelf-name row col-md-12">
+          <h4>
+            {{shelf.name}}
+          </h4>
+        </div>
+      </div>
     </div>
   </div>
 
