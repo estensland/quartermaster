@@ -53,7 +53,7 @@ angular
       }
     })
     .state('notebook', {
-      url: "/:binderi/notebooks/:id",
+      url: "/binders/:binderi/notebooks/:id",
       templateUrl: "<%= asset_path('binders/templates/show.html') %>",
       controller: 'ShowController as showCtrl',
       resolve: {

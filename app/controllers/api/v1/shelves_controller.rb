@@ -4,7 +4,7 @@ class Api::V1::ShelvesController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    @shelves = Shelf.active.order(:id)
+    @shelves = Shelf.active.order(:name)
     render json: @shelves, each_serializer: ShelfSerializer
   end
 

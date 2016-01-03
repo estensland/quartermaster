@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :notebooks, except: [:destroy]
   resources :shelves, except: [:destroy]
   resources :binders, only: [:index]
-  get 'binders/*path' =>'binders#index'
+  get 'shelves/*path' =>'shelves#index'
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do

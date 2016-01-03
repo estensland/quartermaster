@@ -4,7 +4,7 @@ class ShelvesController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    @shelves = Shelf.active
+    # @shelves = Shelf.active
   end
 
 end
