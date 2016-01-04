@@ -9,9 +9,9 @@ class Api::V1::ShelvesController < ApplicationController
   end
 
   def create
-    @shelf = Shelf.new(binder_params)
+    @shelf = Shelf.new(shelf_params)
     if @shelf.save
-      render json: @shelf, location: api_v1_shelf_path
+      render json: @shelf, serializer: ShelfSerializer
     else
       render json: {error: 'Creation failed'}
     end
@@ -25,7 +25,7 @@ class Api::V1::ShelvesController < ApplicationController
   def update
     @shelf = Shelf.find(params[:id])
 
-    if @shelf.update_attributes(binder_params)
+    if @shelf.update_attributes(shelf_params)
       render json: @shelf, location: api_v1_shelf_path
     else
       render json: {error: 'Creation failed'}
@@ -34,7 +34,7 @@ class Api::V1::ShelvesController < ApplicationController
 
 
 
-  def binder_params
+  def shelf_params
     params.require(:shelf).permit(:name, :description, :active)
   end
 end

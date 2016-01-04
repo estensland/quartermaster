@@ -10,8 +10,8 @@ angular.module('binderApp')
         return Build(shelf);
       };
 
-      Shelf  = $resource('/api/v1/shelves/:shelfi', {
-        shelfi: '@shelfi'
+      Shelf  = $resource('/api/v1/shelves/:id', {
+        id: '@id'
       },
       {
         query: {
@@ -40,6 +40,19 @@ angular.module('binderApp')
           method: 'PUT'
         },
         save: {
+          method: 'PUT',
+          isArray: false, // <- not returning an array
+          transformRequest: function(data, header) {
+            var p = angular.toJson({shelf: data});
+            return p;
+          },
+          transformResponse: function(data, header) {
+            var w = angular.fromJson(data);
+
+            return w.shelf;
+          }
+        },
+        create: {
           method: 'POST',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {

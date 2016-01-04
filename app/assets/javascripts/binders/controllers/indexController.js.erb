@@ -7,7 +7,7 @@ angular.module('binderApp')
       'BinderSvc',
       function(shelves, ShelfSvc, BinderSvc) {
         var indexCtrl = this;
-        indexCtrl.shelves = shelves;
+        indexCtrl.shelves = shelves.map(function(shelf){return ShelfSvc.build(shelf)});
         indexCtrl.binders = [];
         indexCtrl.shelves.forEach(function(shelf){
           if(shelf.binders && shelf.binders.length && shelf.binders.length > 0){
@@ -15,10 +15,20 @@ angular.module('binderApp')
           }
         })
 
+        indexCtrl.addShelf = function(){
+          var newShelf = ShelfSvc.build({name: 'New Shelf'});
+          newShelf.$create();
+          indexCtrl.shelves.push(newShelf);
+        }
+
         indexCtrl.addBinder = function(shelf){
           var newBinder = BinderSvc.build({name: 'New Binder', shelf_id: shelf.id});
           newBinder.$save();
           shelf.binders.push(newBinder);
+        }
+
+        indexCtrl.saveShelf = function(shelf){
+          shelf.$save();
         }
       }
   ]);

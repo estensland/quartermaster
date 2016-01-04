@@ -4,6 +4,9 @@
     <div class="col-md-11">
       <h1 class="text-center">
         Shelves
+        <span class="pull-right pointer-me" ng-click="indexCtrl.addShelf()">
+          +
+        </span>
       </h1>
       <div class="row col-md-12 individual-shelf" ng-repeat="shelf in indexCtrl.shelves">
         <div class="text-center binder-row row col-md-12">
@@ -13,7 +16,7 @@
         </div>
         <div class="text-center shelf-name row col-md-12">
           <h4>
-            {{shelf.name}}
+            <input type="text" ng-model="shelf.name" ng-change="indexCtrl.saveShelf(shelf)">
             <span class="pull-right pointer-me" ng-click="indexCtrl.addBinder(shelf)">
               +
             </span>
