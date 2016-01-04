@@ -22,16 +22,24 @@
         margin: 2px 0 2px 4px;
         padding: 2px;
         vertical-align: middle;
+
         p{
           background-color: #FFFFFF;
           border: 1px solid black;
           margin-top: 20px;
+
+          textarea{
+            border-style: none;
+            resize: none;
+            text-align: center;
+            width: 100%;
+          }
         }
       }
     }
 
     .shelf-name{
-      height: 15%;
+      height: 16%;
       margin: 1px;
       padding: 0;
 
@@ -40,6 +48,12 @@
         height: 100%;
         margin: 0;
         padding: 0;
+
+        input{
+          background-color: transparent;
+          border: 0;
+          text-align: center;
+        }
       }
     }
   }

@@ -10,8 +10,8 @@ angular.module('binderApp')
         return Build(binder);
       };
 
-      Binder  = $resource('/api/v1/binders/:binderi', {
-        binderi: '@binderi'
+      Binder  = $resource('/api/v1/binders/:id', {
+        id: '@id'
       },
       {
         query: {
@@ -40,7 +40,7 @@ angular.module('binderApp')
           method: 'PUT'
         },
         save: {
-          method: 'POST',
+          method: 'PUT',
           isArray: false, // <- not returning an array
           transformRequest: function(data, header) {
             var p = angular.toJson({binder: data});
@@ -50,6 +50,19 @@ angular.module('binderApp')
             var w = angular.fromJson(data);
 
             return w.binder;
+          },
+          create: {
+            method: 'POST',
+            isArray: false, // <- not returning an array
+            transformRequest: function(data, header) {
+              var p = angular.toJson({shelf: data});
+              return p;
+            },
+            transformResponse: function(data, header) {
+              var w = angular.fromJson(data);
+
+              return w.shelf;
+            }
           }
         }
       });
