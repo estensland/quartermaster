@@ -70,7 +70,7 @@ angular
         },
         binder: function($q, BinderSvc, $stateParams){
           return $q(function(resolve, reject){
-            BinderSvc.resource.query({binderi: $stateParams.binderi}).
+            BinderSvc.resource.query({id: $stateParams.binderi}).
             $promise.then(function(data) {
               resolve(data.binder);
             }, function(error){
