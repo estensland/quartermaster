@@ -32,7 +32,6 @@ angular.module('binderApp')
           transformResponse: function(data, header) {
             var w = angular.fromJson(data);
             w.binder = TransformInstance(w.binder);
-            w.binder.geographies = w.geographies;
             return w.binder;
           }
         },

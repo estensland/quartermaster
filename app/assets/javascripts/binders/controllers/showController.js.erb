@@ -4,14 +4,16 @@ angular.module('binderApp')
   .controller('ShowController', [
       'notebook',
       'binder',
+      'shelf',
       'NotebookSvc',
       'DividerSvc',
       '$state',
       '$scope',
-      function(notebook, binder, NotebookSvc, DividerSvc, $state, $scope) {
+      function(notebook, binder, shelf, NotebookSvc, DividerSvc, $state, $scope) {
         var showCtrl = this;
         showCtrl.notebook = NotebookSvc.build(notebook);
         showCtrl.binder = binder;
+        showCtrl.shelf = shelf;
         showCtrl.notebooks = binder.notebooks;
 
         showCtrl.notebooks.forEach(function(nb){

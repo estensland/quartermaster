@@ -53,7 +53,7 @@ angular
       }
     })
     .state('notebook', {
-      url: "/binders/:binderi/notebooks/:id",
+      url: "/:shelfi/binders/:binderi/notebooks/:id",
       templateUrl: "<%= asset_path('binders/templates/show.html') %>",
       controller: 'ShowController as showCtrl',
       resolve: {
@@ -70,11 +70,20 @@ angular
         },
         binder: function($q, BinderSvc, $stateParams){
           return $q(function(resolve, reject){
-            BinderSvc.resource.query({id: $stateParams.binderi}).
+            BinderSvc.resource.get({id: $stateParams.binderi}).
             $promise.then(function(data) {
-              resolve(data.binder);
+              resolve(data);
             }, function(error){
-
+              reject(error);
+            });
+          });
+        },
+        shelf: function($q, ShelfSvc, $stateParams){
+          return $q(function(resolve, reject){
+            ShelfSvc.resource.get({id: $stateParams.shelfi}).
+            $promise.then(function(data) {
+              resolve(data);
+            }, function(error){
               reject(error);
             });
           });
