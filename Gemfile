@@ -5,6 +5,12 @@ ruby '2.2.3'
 gem 'rails', '4.2.0'
 
 ###########
+# Auth
+########
+gem 'devise'
+
+
+###########
 # Data Base/Active Record
 ########
 gem 'pg'
