@@ -1,19 +1,48 @@
 Gif.find_or_create_by(name: 'Why you fail', url: "http://i0.kym-cdn.com/photos/images/original/000/896/093/3b8.gif", active: true)
 Gif.find_or_create_by(name: 'Head hit desk', url: "http://i1145.photobucket.com/albums/o503/KimmieRocks/head-desk-bartlett_zps7aadc009.gif", active: true)
 
-history_shelf = Shelf.create(name: 'History')
-abbasid_binder = Binder.find_or_create_by(name: 'Abbasids', color_hex: '#4477FF', shelf: history_shelf)
-crusades_binder = Binder.find_or_create_by(name: 'Crusades', color_hex: '#00FF00', shelf: history_shelf)
-
 top_shelf = Shelf.create(name: '1AAB')
 
-bindayr = Binder.find_or_create_by(name: 'Misc Binder', color_hex: '#D4A190', shelf: top_shelf)
-Binder.find_or_create_by(name: 'Empty Binder', color_hex: '#CC4433', shelf: top_shelf)
+  misc_binder = Binder.find_or_create_by(name: 'Misc Binder', color_hex: 'D4A190', shelf: top_shelf)
+    to_file = Notebook.find_or_create_by(name: 'To File', description: '', color_hex: '6fceed', binder: misc_binder)
+      top_lev = Divider.find_or_create_by(name: 'New Thoughts', description: '', parent: to_file)
+  qm_binder = Binder.find_or_create_by(name: 'QM', color_hex: 'CC4433', shelf: top_shelf)
+    fut = Notebook.find_or_create_by(name: 'Future', description: '', color_hex: '6fceed', binder: misc_binder)
+      Divider.find_or_create_by(name: 'Bugs', description: '', parent: fut)
+      Divider.find_or_create_by(name: 'New Features', description: '', parent: fut)
 
-Notebook.find_or_create_by(name: 'test', description: 'this...is a test....test.....test....test', color_hex: '6fceed', binder: bindayr)
-noteymcnotersen = Notebook.find_or_create_by(name: 'Another Notebranched', description: 'Where we keep notes and junk', color_hex: '0AA7AB', binder: bindayr)
-top_lev = Divider.find_or_create_by(name: 'Top Level Divider', description: 'This is the first of a few', parent: noteymcnotersen)
-second_lev = Divider.find_or_create_by(name: 'Second Level Divider', description: 'This is the child of a few', parent: top_lev)
-second_second_lev = Divider.find_or_create_by(name: 'Second Level Divider 2', description: 'This is the second child of a few', parent: top_lev)
-third_lev = Divider.find_or_create_by(name: 'Third Level Divider', description: 'This is the grandchild child', parent: second_lev)
-Divider.find_or_create_by(name: 'Top Level Divider 2', description: 'This is the second of a few', parent: noteymcnotersen)
+
+history_shelf = Shelf.create(name: 'History')
+third_f_binder = Binder.find_or_create_by(name: 'Third Fitna', color_hex: '000000', shelf: history_shelf)
+abbasids = Notebook.find_or_create_by(name: 'Abbasids', description: '', color_hex: '000000', binder: third_f_binder)
+Divider.find_or_create_by(name: 'Forerunners', description: '', parent: abbasids)
+Divider.find_or_create_by(name: 'Caliphs', description: '', parent: abbasids)
+Divider.find_or_create_by(name: 'Family Members', description: '', parent: abbasids)
+
+umayyads = Notebook.find_or_create_by(name: 'Umayyads', description: '', color_hex: 'FFFFFF', binder: third_f_binder)
+Divider.find_or_create_by(name: 'Forerunners', description: '', parent: umayyads)
+Divider.find_or_create_by(name: 'Mudari-Faction', description: '', parent: umayyads)
+Divider.find_or_create_by(name: 'Yamani-Faction', description: '', parent: umayyads)
+
+
+
+leguin_shelf = Shelf.create(name: 'LeGuin')
+  earthsea = Binder.find_or_create_by(name: 'Earthsea', color_hex: '00FF00', shelf: leguin_shelf)
+    Divider.find_or_create_by(name: 'Works', description: '', parent: earthsea)
+    Divider.find_or_create_by(name: 'Characters', description: '', parent: earthsea)
+    en= Divider.find_or_create_by(name: 'Encyclopeida', description: '', parent: earthsea)
+      Divider.find_or_create_by(name: 'History', description: '', parent: en)
+      Divider.find_or_create_by(name: 'Places', description: '', parent: en)
+      Divider.find_or_create_by(name: 'Culture', description: '', parent: en)
+      Divider.find_or_create_by(name: 'Magic', description: '', parent: en)
+    Divider.find_or_create_by(name: 'Series Analysis', description: '', parent: earthsea)
+
+  hannish = Binder.find_or_create_by(name: 'Hannish', color_hex: '55FF00', shelf: leguin_shelf)
+    Divider.find_or_create_by(name: 'Works', description: '', parent: hannish)
+    en= Divider.find_or_create_by(name: 'Encyclopeida', description: '', parent: hannish)
+      Divider.find_or_create_by(name: 'Planets', description: '', parent: en)
+      Divider.find_or_create_by(name: 'Races', description: '', parent: en)
+      Divider.find_or_create_by(name: 'Technology/Abilities', description: '', parent: en)
+    Divider.find_or_create_by(name: 'Characters', description: '', parent: hannish)
+    Divider.find_or_create_by(name: 'Series Analysis', description: '', parent: hannish)
+
