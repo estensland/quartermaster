@@ -10,6 +10,12 @@ angular.module('binderApp')
       '$state',
       '$scope',
       function(notebook, binder, shelf, NotebookSvc, DividerSvc, $state, $scope) {
+
+
+        //////////////////////////////////
+        // Set Up
+        //////////////////////////////
+
         var showCtrl = this;
         showCtrl.notebook = NotebookSvc.build(notebook);
         showCtrl.binder = binder;
@@ -29,6 +35,11 @@ angular.module('binderApp')
           divider.notes = divider.notes.sort(function(a,b){return parseInt(a.order) > parseInt(b.order)});
         }
 
+
+        //////////////////////////////////
+        // CRUD-NESS
+        //////////////////////////////
+
         showCtrl.createNotebook = function(){
           var newNotebook = NotebookSvc.build({name: 'New Notebook', color_hex: binder.color_hex, binder_id: binder.id});
 
@@ -43,6 +54,10 @@ angular.module('binderApp')
           divider.$save();
         }
 
+        showCtrl.updateNotebook = function(){
+          showCtrl.notebook.$save();
+        }
+
         showCtrl.addChildDivider = function(object){
           var displayOrder = object.children.length;
           var newDivider = DividerSvc.build({name: 'New Divider', parent_id: object.id, parent_type: 'Divider', display_order: displayOrder});
@@ -51,12 +66,12 @@ angular.module('binderApp')
             object.children.push(newDivider);
             showCtrl.setCurrentDivider(newDivider);
           });
-
         }
 
-        showCtrl.updateNotebook = function(){
-          showCtrl.notebook.$save();
-        }
+
+        //////////////////////////////////
+        // Drag Fun
+        //////////////////////////////
 
         var element = $('directory-tree')
 
@@ -139,6 +154,7 @@ angular.module('binderApp')
           window.location.reload();
         }
 
+
         element.on('dragend', 'li', function(e){
           e.stopPropagation();
 
@@ -179,6 +195,11 @@ angular.module('binderApp')
             $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
           }
         })
+
+
+        //////////////////////////////////
+        // Color Changing
+        //////////////////////////////
 
         showCtrl.colors = [
           '0000FF',
