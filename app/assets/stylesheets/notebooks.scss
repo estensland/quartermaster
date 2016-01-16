@@ -23,6 +23,15 @@
         padding: 2px;
         vertical-align: middle;
 
+        .color-top-bar{
+          height: 1px;
+          width: 100%;
+
+          span{
+            opacity: 0;
+          }
+        }
+
         p{
           background-color: #FFFFFF;
           border: 1px solid black;

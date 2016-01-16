@@ -34,5 +34,57 @@ angular.module('binderApp')
         indexCtrl.saveBinder = function(binder){
           binder.$save();
         }
+
+        indexCtrl.colors = [
+          '0000FF',
+          '3275F0',
+          '3275F0',
+          '7373DE',
+          '00BFFF',
+          '90C3D4',
+          'FF0000',
+          'FF0055',
+          'D17777',
+          'FF4000',
+          'D4A190',
+          '00FF00',
+          'A1D490',
+          'FF00FF',
+          'FA4DFA',
+          'C390D4',
+          'FFFF00',
+          'D4C390',
+          '92C779',
+          'C78779',
+          '00FFFF',
+          '79BEC7',
+          'FF00FF',
+          'C779A3',
+          '000000',
+          '111111',
+          '333333',
+          'DDDDDDD'
+        ];
+
+        indexCtrl.colorIndex = 0;
+
+        indexCtrl.incrementColorIndex = function(){
+          indexCtrl.colorIndex ++;
+          if(indexCtrl.colors.length === indexCtrl.colorIndex){
+            indexCtrl.colorIndex = 0;
+          }
+        }
+
+        indexCtrl.changeColor = function(binder, $event){
+          $event.preventDefault();
+          $event.stopImmediatePropagation();
+
+          var newColor = indexCtrl.colors[indexCtrl.colorIndex];
+          binder.color_hex = "#" + newColor;
+          indexCtrl.saveBinder(binder);
+          indexCtrl.incrementColorIndex();
+
+
+        }
       }
   ]);
