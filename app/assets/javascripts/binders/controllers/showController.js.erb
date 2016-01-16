@@ -58,10 +58,6 @@ angular.module('binderApp')
           showCtrl.notebook.$save();
         }
 
-        showCtrl.reOrganizeTree = function(dividerId, newSibId, relation){
-          debugger
-        }
-
         var element = $('directory-tree')
 
         showCtrl.dragmode = false;
@@ -183,5 +179,56 @@ angular.module('binderApp')
             $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
           }
         })
+
+        showCtrl.colors = [
+          '0000FF',
+          '3275F0',
+          '3275F0',
+          '7373DE',
+          '00BFFF',
+          '90C3D4',
+          'FF0000',
+          'FF0055',
+          'D17777',
+          'FF4000',
+          'D4A190',
+          '00FF00',
+          'A1D490',
+          'FF00FF',
+          'FA4DFA',
+          'C390D4',
+          'FFFF00',
+          'D4C390',
+          '92C779',
+          'C78779',
+          '00FFFF',
+          '79BEC7',
+          'FF00FF',
+          'C779A3',
+          '000000',
+          '111111',
+          '333333',
+          'DDDDDDD'
+        ];
+
+        showCtrl.colorIndex = 0;
+
+        showCtrl.incrementColorIndex = function(){
+          showCtrl.colorIndex ++;
+          if(showCtrl.colors.length === showCtrl.colorIndex){
+            showCtrl.colorIndex = 0;
+          }
+        }
+
+        showCtrl.changeColor = function(notebook, $event){
+          $event.preventDefault();
+          $event.stopImmediatePropagation();
+
+          var newColor = showCtrl.colors[showCtrl.colorIndex];
+          notebook.color_hex = newColor;
+          showCtrl.updateNotebook(notebook);
+          notebook.$save();
+          showCtrl.incrementColorIndex();
+        }
       }
   ]);

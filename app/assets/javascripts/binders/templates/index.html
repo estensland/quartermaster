@@ -10,7 +10,7 @@
       </h1>
       <div class="row col-md-12 individual-shelf" ng-repeat="shelf in indexCtrl.shelves">
         <div class="text-center binder-row row col-md-12">
-          <div class="row text-center col-md-1 binder binder-on-shelf pointer-me" ng-repeat="binder in shelf.binders" style="background-color:{{binder.color_hex}}" ui-sref="notebook({shelfi: shelf.id, binderi: binder.id, id: binder.notebooks[0].id})" >
+          <div class="row text-center col-md-1 binder binder-on-shelf pointer-me" ng-repeat="binder in shelf.binders" style="background-color:#{{binder.color_hex}}" ui-sref="notebook({shelfi: shelf.id, binderi: binder.id, id: binder.notebooks[0].id})" >
             <div class="color-top-bar">
               <span class="pull-right" ng-click="indexCtrl.changeColor(binder, $event)">*</span>
             </div>

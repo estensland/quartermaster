@@ -3,9 +3,12 @@
     <span ui-sref="notebook({id: nb.id})">
       <a href='#' ng-if="nb.id != showCtrl.notebook.id">
         {{nb.name}}
-      </span>
+      </a>
       <a href='#' ng-if="nb.id === showCtrl.notebook.id">
         {{showCtrl.notebook.name}}
+      </a>
+      <span class="float-right color-changer pointer-me" ng-click="showCtrl.changeColor(nb, $event)">
+        *
       </span>
     </span>
   </div>

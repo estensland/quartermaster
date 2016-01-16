@@ -80,11 +80,9 @@ angular.module('binderApp')
           $event.stopImmediatePropagation();
 
           var newColor = indexCtrl.colors[indexCtrl.colorIndex];
-          binder.color_hex = "#" + newColor;
+          binder.color_hex = newColor;
           indexCtrl.saveBinder(binder);
           indexCtrl.incrementColorIndex();
-
-
         }
       }
   ]);
