@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  host: localhost
   database: quartermaster_production
   username: quartermaster
   password: <%= ENV['QUARTERMASTER_DATABASE_PASSWORD'] %>
