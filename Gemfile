@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+  source 'https://rubygems.org'
 
 ruby '2.2.3'
 
@@ -16,6 +16,7 @@ gem 'devise'
 gem 'pg'
 gem 'active_model_serializers'
 
+
 ###########
 # Styling CSS/SASS/SCSS/ETC
 ########
@@ -26,7 +27,6 @@ gem 'bootstrap-sass', '~> 3.3.6'
 ###########
 # Angular assets pulled from rails-assets
 ########
-
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular', '~> 1.4.8'
   gem 'rails-assets-angular-bootstrap', '~> 0.14.3'
@@ -34,6 +34,11 @@ source 'https://rails-assets.org' do
   gem "rails-assets-angular-animate", '~> 1.4.8'
   gem 'rails-assets-angular-ui-router', '0.2.15'
 end
+
+###########
+# Sys Ops
+########
+gem 'mina'
 
 
 ###########

@@ -12,3 +12,5 @@
 logfile
 !/log/.keep
 /tmp
+
+/config/deploy.rb
