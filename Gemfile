@@ -1,8 +1,12 @@
-  source 'https://rubygems.org'
-gem 'puma'
-ruby '2.2.3'
+source 'https://rubygems.org'
 
+
+###########
+# Base
+########
+ruby '2.2.3'
 gem 'rails', '4.2.0'
+
 
 ###########
 # Auth
@@ -35,11 +39,12 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-ui-router', '0.2.15'
 end
 
+
 ###########
 # Sys Ops
 ########
 gem 'mina'
-
+gem 'puma'
 
 
 ###########
@@ -50,10 +55,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Use Unicorn as the app server
-# gem 'unicorn'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 
 ###########
@@ -69,4 +70,3 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-
