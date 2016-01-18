@@ -39,7 +39,7 @@ end
 # Sys Ops
 ########
 gem 'mina'
-gem 'puma'
+
 
 
 ###########
