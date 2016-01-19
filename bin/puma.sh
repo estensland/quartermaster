@@ -2,7 +2,7 @@
 
 PUMA_CONFIG_FILE=/var/www/quartermaster/current/config/puma.rb
 PUMA_PID_FILE=/var/www/quartermaster/shared/tmp/pids/puma.pid
-PUMA_SOCKET=/var/www/quartermaster/shared/tmp/sockets/puma.sock
+PUMA_SOCKET=unix:///tmp/my_app.sock
 
 # check if puma process is running
 puma_is_running() {
