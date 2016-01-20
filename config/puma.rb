@@ -9,4 +9,4 @@ stdout_redirect "/var/www/quartermaster/shared/tmp/log/stdout", "/var/www/quarte
 
 threads 0, 16
 
-bind "unix:///tmp/my_app.sock"
+bind "unix:///tmp/socekts/quartermaster.sock"
