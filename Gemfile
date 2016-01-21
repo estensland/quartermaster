@@ -43,7 +43,7 @@ end
 ###########
 # Sys Ops
 ########
-
+gem 'unicorn'
 
 ###########
 # MiscDefault Gems
