@@ -1,5 +1,4 @@
 'use strict';
-console.log('blah')
 
 angular.module('binderApp')
   .controller('IndexController', [
@@ -7,6 +6,7 @@ angular.module('binderApp')
       'ShelfSvc',
       'BinderSvc',
       function(shelves, ShelfSvc, BinderSvc) {
+        console.log('blah')
         var indexCtrl = this;
         indexCtrl.shelves = shelves.map(function(shelf){return ShelfSvc.build(shelf)});
         indexCtrl.binders = [];
