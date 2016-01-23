@@ -1,0 +1,20 @@
+<div class="col-md-8 tab-side">
+  <div class="notebook-tab" ng-class="{active: nb.id == showCtrl.notebook.id}" ng-repeat="nb in showCtrl.notebooks" style="background-color: #{{nb.color_hex}};">
+    <span ui-sref="notebook({id: nb.id})">
+      <a href='#' ng-if="nb.id != showCtrl.notebook.id">
+        {{nb.name}}
+      </a>
+      <a href='#' ng-if="nb.id === showCtrl.notebook.id">
+        {{showCtrl.notebook.name}}
+      </a>
+      <span class="float-right color-changer pointer-me" ng-click="showCtrl.changeColor(nb, $event)">
+        *
+      </span>
+    </span>
+  </div>
+  <div class="notebook-tab" style="background-color: #{{showCtrl.binder.color_hex}};">
+    <a href='#' ng-click="showCtrl.createNotebook()">
+      {{" + "}}
+    </span>
+  </div>
+</div>

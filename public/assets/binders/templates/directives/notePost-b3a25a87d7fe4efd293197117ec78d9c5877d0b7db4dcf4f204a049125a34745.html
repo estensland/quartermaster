@@ -1,0 +1,8 @@
+<div class="notePostContainer" ng-mouseenter="showTopBarNow()" ng-mouseleave="showTopBarNow()" ng-click="$event.stopImmediatePropagation()">
+  <div class="full-span top-bar">
+    <div class="note-remover text-right" ng-show="showTopBar">
+      <span ng-click="removeNote($event)">X</span>
+    </div>
+  </div>
+  <div contentEditable="true" class="body-container full-span" ng-focus="setFocus()" ng-bind-html="bod"></div>
+</div>
