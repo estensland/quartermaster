@@ -20,3 +20,4 @@
 //= require angular-resource
 //= require angular-bootstrap
 //= require_tree .
+console.log('joke')
