@@ -131,7 +131,6 @@ angular.module('binderApp')
           newParent.children.forEach(function(child){
             if(movedDivider != child){
               if(newSibDivider === child){
-                console.log(relation)
                 if (relation === 'before') {
                   movedDivider.display_order = indexCounter;
                   indexCounter ++;
