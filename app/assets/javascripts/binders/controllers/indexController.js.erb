@@ -23,7 +23,7 @@ angular.module('binderApp')
 
         indexCtrl.addBinder = function(shelf){
           var newBinder = BinderSvc.build({name: 'New Binder', shelf_id: shelf.id});
-          newBinder.$save();
+          newBinder.$create();
           shelf.binders.push(newBinder);
         }
 
