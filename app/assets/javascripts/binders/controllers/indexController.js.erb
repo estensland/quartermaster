@@ -14,7 +14,7 @@ angular.module('binderApp')
             indexCtrl.binders = indexCtrl.binders.concat(shelf.binders);
           }
         })
-
+        console.log(shelves)
         indexCtrl.addShelf = function(){
           var newShelf = ShelfSvc.build({name: 'New Shelf'});
           newShelf.$create();
