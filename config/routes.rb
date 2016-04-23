@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
 
-  resources :gifs, only: [:index, :create, :update]
+  resources :gifs, only: [:index, :create, :update, :new]
   resources :ping, except: [:destroy]
   resources :note, except: [:destroy]
   resources :notebooks, except: [:destroy]
