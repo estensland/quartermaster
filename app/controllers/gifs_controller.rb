@@ -6,4 +6,19 @@ class GifsController < ApplicationController
   def index
     @gifs = Gif.active
   end
+
+  def new
+    @gif = Gif.new
+  end
+
+  def create
+    Gif.create(gif_params)
+    redirect_to :index
+  end
+
+  private
+
+  def gif_params
+    params.require(:gif).permit(:name, :url)
+  end
 end
