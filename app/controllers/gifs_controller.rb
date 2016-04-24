@@ -13,7 +13,7 @@ class GifsController < ApplicationController
 
   def create
     Gif.create(gif_params)
-    redirect_to :index
+    redirect_to action :index
   end
 
   private
