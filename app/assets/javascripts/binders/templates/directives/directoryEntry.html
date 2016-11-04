@@ -1,5 +1,13 @@
 <li class="draggable-li  {{lastListed ? 'last-of-list' : ''}}" dividerId="{{object.id}}">
   <div class="marker" ng-mouseover="showPlus = true" ng-mouseleave="showPlus = false">
+    <span>
+      <span ng-if="object.children.length > 0" ng-click='object.open = !object.open'>
+        {{object.open ? 'V' : '>'}}
+      </span>
+      <span ng-if="object.children.length == 0">
+        &nbsp;
+      </span>
+    </span>
     <a class="pointer-me" ng-click="clicker(object)">
       {{object.name}}
     </a>
@@ -7,7 +15,7 @@
       +
     </a>
   </div>
-  <ul class="directory-list" ng-if="object.children.length > 0">
+  <ul class="directory-list" ng-if="object.children.length > 0" ng-show='object.open'>
     <li ng-repeat="child in object.children">
       <directory-entry object="child" clicker="clicker" new-divider="newDivider" last-listed="$last" child-id="{{child.id}}">
       </directory-entry>

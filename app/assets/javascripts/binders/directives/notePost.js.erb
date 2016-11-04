@@ -32,7 +32,7 @@ angular.module('binderApp').directive('notePost', [
           element.css('height', ('' + scope.note.hstore.height + 'px'));
         }
 
-        element.on('dblclick',function(){
+        element.find('.resize-bar').on('click',function(){
           element.css('width', ('40px'));
           element.css('height', ('40px'));
         })
@@ -40,7 +40,7 @@ angular.module('binderApp').directive('notePost', [
         element.css('position', 'absolute');
         scope.setElementOffset();
 
-        element.attr('draggable', true);
+
 
         element.on('dragend', function(e){
           scope.note.hstore.x = parseInt(scope.note.hstore.x) + parseInt(e.originalEvent.offsetX);
@@ -101,6 +101,7 @@ angular.module('binderApp').directive('notePost', [
 
         scope.showTopBarNow = function(){
           scope.showTopBar = !scope.showTopBar
+          element.attr('draggable', scope.showTopBar);
         }
 
 
