@@ -32,7 +32,7 @@ angular.module('binderApp').directive('notePost', [
           element.css('height', ('' + scope.note.hstore.height + 'px'));
         }
 
-        element.on('dblclick',function(){
+        element.find('.resize-bar').on('click',function(){
           element.css('width', ('40px'));
           element.css('height', ('40px'));
         })
