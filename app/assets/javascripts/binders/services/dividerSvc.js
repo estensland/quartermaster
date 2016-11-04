@@ -91,7 +91,8 @@ angular.module('binderApp')
           active:        obj.active        || true,
           display_order: obj.display_order || 0,
           created_at:    obj.created_at    || new Date(),
-          updated_at:    obj.updated_at    || new Date()
+          updated_at:    obj.updated_at    || new Date(),
+          open:          false
         })
       };
 
