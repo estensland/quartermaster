@@ -105,6 +105,40 @@ angular.module('binderApp').directive('notePost', [
         }
 
 
+        scope.insertTable = function(){
+          scope.note.body = scope.note.body + "<table class='table table-bordered'>"
+
+          scope.note.body = scope.note.body + '<thead><tr>'
+
+          var thCount = [1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+          var trCount = [1,1,1,1,1,1,1,1,1,1,1,1,1]
+
+          angular.forEach(thCount, function(e,i){
+            scope.note.body = scope.note.body + '<th></th>'
+          })
+
+          scope.note.body = scope.note.body + '</tr></thead>'
+
+          scope.note.body = scope.note.body + '<tbody>'
+
+          angular.forEach(trCount, function(ee,ii){
+            scope.note.body = scope.note.body + '<tr>'
+
+            angular.forEach(thCount, function(e,i){
+              console.log('a')
+              scope.note.body = scope.note.body + '<td></td>'
+            })
+
+            scope.note.body = scope.note.body + '</tr>'
+          })
+
+
+          // scope.note.body = scope.note.body + "</tbody></table>"
+
+          scope.bod = $sce.trustAsHtml(scope.note.body);
+        }
+
         scope.removeNote = function($event){
           if($event){$event.stopImmediatePropagation()}
 

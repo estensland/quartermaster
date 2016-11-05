@@ -1,6 +1,7 @@
 <div class="notePostContainer" ng-mouseenter="showTopBarNow()" ng-mouseleave="showTopBarNow()" ng-click="$event.stopImmediatePropagation()">
   <div class="full-span top-bar">
     <div class="note-remover text-right" ng-show="showTopBar">
+      <a href ng-click="insertTable()" style="color: #0000FF">T</a>
       <a href class="resize-bar" style="color: #0000FF">--</a>
       &nbsp;
       <span ng-click="removeNote($event)" style="color: #FF0000">X</span>
