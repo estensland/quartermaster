@@ -51,6 +51,8 @@ end
 gem 'unicorn'
 
 
+gem 'seed_dump'
+
 ###########
 # Environment Specifics
 ########
