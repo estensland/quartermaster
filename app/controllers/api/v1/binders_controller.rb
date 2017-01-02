@@ -4,7 +4,6 @@ class Api::V1::BindersController < ApplicationController
   protect_from_forgery with: :exception
 
   def index
-    ActiveModelSerializers.config.adapter = :json
     @binders = Binder.active.order(:id)
     render json: @binders, each_serializer: BinderSerializer
   end

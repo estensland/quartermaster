@@ -6,6 +6,10 @@ ActiveModelSerializers.config.adapter = :json
               :created_at,
               :updated_at,
               :binder_id,
-              :active
-  has_many :children, serializer: DividerSerializer
+              :active,
+              :children
+
+  def children
+    CollectionSerializer.new(object.children, {})
+  end
 end
