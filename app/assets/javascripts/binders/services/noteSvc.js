@@ -70,6 +70,31 @@ angular.module('binderApp')
         }
       });
 
+
+        var debounce = function(func, wait, immediate) {
+          var timeout;
+
+          return function() {
+            var context = this
+            var args = arguments;
+
+            var later = function() {
+              timeout = null;
+              func.apply(context, args);
+            };
+
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        };
+
+      Note.prototype.debouncerSave = debounce(function(htmlBody){
+          if (this.id){
+            this.body = htmlBody
+            this.$save();
+          }
+        }, 400);
+
       Build = function(obj) {
 
         obj = obj || {};

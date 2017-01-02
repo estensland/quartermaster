@@ -1,4 +1,5 @@
 class NotebookSerializer < ActiveModel::Serializer
+ActiveModelSerializers.config.adapter = :json
   attributes  :id,
               :name,
               :color_hex,

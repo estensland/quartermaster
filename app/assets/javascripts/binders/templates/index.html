@@ -15,14 +15,14 @@
               <span class="pull-right" ng-click="indexCtrl.changeColor(binder, $event)">*</span>
             </div>
             <p>
-              <textarea type="text" ng-model="binder.name" ng-change="indexCtrl.saveBinder(binder)" ng-click="$event.stopPropagation()">
+              <textarea type="text" ng-model="binder.name" ng-change="indexCtrl.saveBinder(binder)" ng-click="$event.stopPropagation()" ng-model-options="{debounce: 500}">
               </textarea>
             </p>
           </div>
         </div>
         <div class="text-center shelf-name row col-md-12">
           <h4>
-            <input type="text" ng-model="shelf.name" ng-change="indexCtrl.saveShelf(shelf)">
+            <input type="text" ng-model="shelf.name" ng-change="indexCtrl.saveShelf(shelf)" ng-model-options="{debounce: 500}">
             <span class="pull-right pointer-me" ng-click="indexCtrl.addBinder(shelf)">
               +
             </span>

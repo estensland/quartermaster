@@ -84,15 +84,16 @@ angular.module('binderApp').directive('notePost', [
           bodyContainer.focus();
         }
 
+
+
+
         bodyContainer.on('input', function(){
-          if (scope.note.id){
-            scope.note.body = bodyContainer.html();
-            scope.note.$save();
-          }
+
+          scope.note.debouncerSave(bodyContainer.html());
         })
 
         bodyContainer.on('blur', function(){
-          if(scope.note.body == ''){
+          if(scope.note.body == '' && bodyContainer.html() == ''){
             scope.removeNote();
           }
         })

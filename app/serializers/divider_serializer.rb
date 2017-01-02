@@ -1,4 +1,5 @@
 class DividerSerializer < ActiveModel::Serializer
+  ActiveModelSerializers.config.adapter = :json
   attributes  :id,
               :name,
               :description,
@@ -6,7 +7,14 @@ class DividerSerializer < ActiveModel::Serializer
               :parent_id,
               :parent_type,
               :display_order,
-              :active
-  has_many :children, serializer: DividerSerializer
-  has_many :notes, serializer: NoteSerializer
+              :active,
+              :notes,
+              :children
+  def notes
+    CollectionSerializer.new(object.notes, {})
+  end
+
+  def children
+    CollectionSerializer.new(object.children, {})
+  end
 end

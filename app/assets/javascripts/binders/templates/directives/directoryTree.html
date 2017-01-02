@@ -1,6 +1,6 @@
 <div>
   <h4 class="directrory-tree-header" ng-mouseover="showPlus = true" ng-mouseleave="showPlus = false">
-    <input type="text" ng-model="showCtrl.notebook.name" ng-change="showCtrl.updateNotebook()">
+    <input type="text" ng-model="showCtrl.notebook.name" ng-change="showCtrl.updateNotebook()" ng-model-options="{debounce: 500}">
     <a href="#" class="pull-right add-divider" ng-click="showCtrl.addChildDivider(showCtrl.notebook, 'Notebook')" ng-show="showPlus">
       +
     </a>

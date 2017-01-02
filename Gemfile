@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 # Base
 ########
 ruby '2.2.3'
-gem 'rails', '4.2.0'
+gem 'rails', '5.0.0.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
@@ -22,7 +22,7 @@ gem 'devise'
 ###########
 # Data Base/Active Record
 ########
-gem 'pg'
+gem 'pg', '0.18'
 gem 'active_model_serializers'
 
 
