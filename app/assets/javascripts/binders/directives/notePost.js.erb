@@ -106,16 +106,26 @@ angular.module('binderApp').directive('notePost', [
         }
 
 
+        scope.showPannel = function(){
+          scope.showPanelCheck = !scope.showPanelCheck
+        }
+
+        scope.thCount = 1
+        scope.trCount = 1
+
         scope.insertTable = function(){
+          scope.showPannel()
+
           scope.note.body = scope.note.body + "<table class='table table-bordered'>"
 
           scope.note.body = scope.note.body + '<thead><tr>'
 
-          var thCount = [1,1,1,1,1,1,1,1,1,1,1,1,1]
+          var thIteration = new Array(scope.thCount).fill(1)
 
-          var trCount = [1,1,1,1,1,1,1,1,1,1,1,1,1]
 
-          angular.forEach(thCount, function(e,i){
+          var trIteration = new Array(scope.trCount).fill(1)
+
+          angular.forEach(thIteration, function(e,i){
             scope.note.body = scope.note.body + '<th></th>'
           })
 
@@ -123,11 +133,10 @@ angular.module('binderApp').directive('notePost', [
 
           scope.note.body = scope.note.body + '<tbody>'
 
-          angular.forEach(trCount, function(ee,ii){
+          angular.forEach(trIteration, function(ee,ii){
             scope.note.body = scope.note.body + '<tr>'
 
-            angular.forEach(thCount, function(e,i){
-              console.log('a')
+            angular.forEach(thIteration, function(e,i){
               scope.note.body = scope.note.body + '<td></td>'
             })
 
