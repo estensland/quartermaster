@@ -13,14 +13,14 @@
   <div ng-show="showPanelCheck">
     <div>
       <label for="anchor-href">
-        Anchor Href
-        <input name="anchor-href" type="text" ng-model="anchor.href">
+        Href
+        <input name="anchor-href" type="text" ng-model="anchor.href" style="width: 190px">
       </label>
       <label for="anchor-text">
-        Anchor Text
-        <input name="anchor-text" type="text" ng-model="anchor.text">
+        Text
+        <input name="anchor-text" type="text" ng-model="anchor.text" style="width: 100px">
       </label>
-      <input type="submit" ng-click="insertAnchor()">
+      <input type="submit" value="Add Anchor" ng-click="insertAnchor()">
     </div>
     <div>
       <label for="img-href">
@@ -32,12 +32,12 @@
     <div>
       <label for="thCount">
         TH Count
-        <input name="thCount" type="number" ng-model="thCount">
+        <input name="thCount" type="number" ng-model="thCount" style="width: 50px">
       </label>
 
       <label for="trCount">
         TR Count
-        <input name="trCount" type="number" ng-model="trCount">
+        <input name="trCount" type="number" ng-model="trCount" style="width: 50px">
       </label>
       <input type="submit" ng-click="insertTable()">
     </div>
