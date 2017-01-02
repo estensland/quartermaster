@@ -110,11 +110,19 @@ angular.module('binderApp').directive('notePost', [
           scope.showPanelCheck = !scope.showPanelCheck
         }
 
-        scope.thCount = 1
-        scope.trCount = 1
+        scope.thCount = 1;
+        scope.trCount = 1;
+        scope.anchor = {};
+
+        scope.insertAnchor = function(){
+          scope.showPannel();
+          scope.note.body = scope.note.body + "<a contenteditable='false' href=" + scope.anchor.href + ">" + scope.anchor.text + "</a>";
+
+          scope.bod = $sce.trustAsHtml(scope.note.body);
+        }
 
         scope.insertTable = function(){
-          scope.showPannel()
+          scope.showPannel();
 
           scope.note.body = scope.note.body + "<table class='table table-bordered'>"
 
