@@ -113,10 +113,18 @@ angular.module('binderApp').directive('notePost', [
         scope.thCount = 1;
         scope.trCount = 1;
         scope.anchor = {};
+        scope.src = {};
 
         scope.insertAnchor = function(){
           scope.showPannel();
           scope.note.body = scope.note.body + "<a contenteditable='false' href=" + scope.anchor.href + ">" + scope.anchor.text + "</a>";
+
+          scope.bod = $sce.trustAsHtml(scope.note.body);
+        }
+
+        scope.insertImg = function(){
+          scope.showPannel();
+          scope.note.body = scope.note.body + "<img src=" + scope.img.src + ">";
 
           scope.bod = $sce.trustAsHtml(scope.note.body);
         }
